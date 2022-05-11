@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Box>
-        <h1>Welcome to the Discord NFT detector!</h1>
+        <h1 >Welcome to the Discord NFT detector!</h1>
       </Box>
       <Box>
         <Metamask />

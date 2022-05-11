@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     container: {
         padding: theme.spacing(4),
         display: "flex",
-        justifyContent: "flex-end",
+        justifyContent: "center",
         gap: theme.spacing(1)
     }
 }))
