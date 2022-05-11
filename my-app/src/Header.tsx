@@ -1,16 +1,22 @@
 import React, { useEffect } from 'react';
 import { useMoralis } from "react-moralis";
+import { Button, makeStyles } from "@material-ui/core"
+
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+        padding: theme.spacing(4),
+        display: "flex",
+        justifyContent: "flex-end",
+        gap: theme.spacing(1)
+    }
+}))
+
 
 export const Header = () => {
+    const classes = useStyles()
 
     const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            // add your logic here
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isAuthenticated]);
 
 
     const login = async () => {
@@ -27,23 +33,27 @@ export const Header = () => {
         }
     }
 
+
     const logOut = async () => {
         await logout();
         console.log("logged out");
     }
 
+
     return (
-        <div>
-            {isAuthenticated ? (
-                <button onClick={logOut} disabled={isAuthenticating}>
-                    Disconnect 🦊
-                </button>
-            ) : (
-                <button onClick={login}>
-                    Connect 🦊
-                </button>
-            )
-            }
+        <div className={classes.container}>
+            <div>
+                {isAuthenticated ? (
+                    <Button color="default" variant="contained" onClick={logOut} disabled={isAuthenticating}>
+                        Disconnect 🦊
+                    </Button>
+                ) : (
+                    <Button color="primary" variant="contained" onClick={login}>
+                        Connect 🦊
+                    </Button>
+                )
+                }
+            </div>
         </div>
     );
 }
