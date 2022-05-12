@@ -26,6 +26,6 @@ async def on_message(message):
         return
 
     # Send the Dapp Link
-    if message.content.startswith("$NFT"):
+    if message.content.startswith("NFT"):
         await message.channel.send("Here is the link to verify yout NFT:")
-        await message.channel.send("http://localhost:3000/")
+        # await message.channel.send("http://localhost:3000/")
