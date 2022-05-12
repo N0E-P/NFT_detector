@@ -1,0 +1,10 @@
+
+
+ORIGINAL :
+def update_address(enteredAddress):
+  if "collectionAddress" in db.keys():
+    collectionAddress = db ["collectionAddress"]
+    collectionAddress.append(enteredAddress)
+    db["collectionAddress"] = collectionAddress
+  else:
+    db["collectionAddress"] = [enteredAddress]
