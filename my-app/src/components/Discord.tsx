@@ -29,6 +29,7 @@ export const Discord = () => {
         setUserData({
             username
         })
+        console.log("Username saved:", username)
     }
 
 

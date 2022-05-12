@@ -1,6 +1,7 @@
 import React from 'react';
 import { Discord } from "./components/Discord"
 import { Metamask } from "./components/Metamask"
+import { Collection } from "./components/Collection"
 import { Box, Container } from "@material-ui/core"
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
       </Box>
       <Box>
         <Discord />
+      </Box>
+      <Box>
+        <Collection />
       </Box>
     </div>
   );
