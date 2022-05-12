@@ -1,9 +1,9 @@
 import discord
 import os
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 # Use the .env file
-#load_dotenv()
+load_dotenv()
 
 # Connect the discord bot
 client = discord.Client()
@@ -22,10 +22,10 @@ async def on_message(message):
         return
 
     # Send the Dapp Link
-    if message.content.startswith("NFT"):
+    if message.content.startswith("$NFT"):
         await message.channel.send("Here is the link to verify yout NFT:")
-        # await message.channel.send("http://localhost:3000/")
+        await message.channel.send("http://localhost:3000/")
 
 
-# Take the token to have authorization to act as the Discord bot
+# Take the token to have authorization to act as the Discord bot (It has to stay at the end of the script.)
 client.run(os.getenv("TOKEN"))
