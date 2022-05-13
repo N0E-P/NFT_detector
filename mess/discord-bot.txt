@@ -1,3 +1,32 @@
+----------Actual things in test ----------------
+from discord.ext import commands
+
+#client=commands.Bot(command_prefix=".")
+
+#THIS IS JUST A TEST
+#@client.command()
+#async def createRole(ctx):
+#  await message.channel.send('role created')
+#  author = ctx.message.author
+#  await client.create_role(author.server, name="role name")
+
+  
+#FIND A WAY TO GET THE ROLE OF NFT OWNER (need the "member" in entry point)
+  #role = discord.utils.get(member.server.roles, name='NFT member')
+  #await client.add_roles(member, role)
+  #await message.channel.send(f'{member.name} just got the NFT member role !') #TO DELETE LATER, it's just to test if it work
+
+
+
+
+
+------------------------------------------------
+
+
+
+
+
+
 
 
 ORIGINAL :
@@ -8,66 +37,6 @@ def update_address(enteredAddress):
     db["collectionAddress"] = collectionAddress
   else:
     db["collectionAddress"] = [enteredAddress]
-
-
-
-
-
-
-
-
-
-def update_address(enteredAddress):
-  db["key"] = "value"
-
-
-
-  
-  if "collectionAddress" in db.keys():
-    collectionAddress = db ["collectionAddress"]
-    collectionAddress.append(enteredAddress)
-    db["collectionAddress"] = collectionAddress
-  else:
-    db["collectionAddress"] = [enteredAddress]
-
-
-
-def delete_address(index):
-  collectionAddress = db ["collectionAddress"]
-  if len(collectionAddress) > index:
-    del collectionAddress[index]
-    db["collectionAddress"] = collectionAddress
-
-
-
-
-
-
-
-
-  if msg.startswith("$addcollection"):
-    enteredAddress = msg.split("$NFTcollection ",1)[1]
-    update_address(enteredAddress)
-    await message.channel.send("New collection address added.")
-
-  
-  if msg.startswith("$deletecollection"):
-    collectionAddress = []
-    if "collectionAddress" in db.keys():
-      index = int(msg.split("$NFTcollectionDelete",1)[1])
-      delete_address(index)
-      collectionAddress = db["collectionAddress"]
-    await message.channel.send(collectionAddress)
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -103,18 +72,3 @@ async def addRole(self, ctx, user : discord.Member, *, role: discord.Role):
   else:
     await user.add_roles(role)
     await ctx.send(f"Added {role} to {user.mention}")
-
-
-
-
-
-
-
-from discord.ext import commands
-
-@client.command()
-async def message(ctx, user:discord.Member, *, message=None):
-  message = "Here is the link to verify your NFT: http://localhost:3000/"
-  embed = discord.Embed(title=message)
-  await user.send(embed=embed)
-
