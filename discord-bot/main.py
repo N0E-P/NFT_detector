@@ -1,3 +1,5 @@
+# to start the bot, run this in the terminal : "pip install discord.py" or "pip install discord-py-slash-command"
+
 import discord
 import os
 from keep_alive import keep_alive
