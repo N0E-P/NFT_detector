@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMoralis, } from "react-moralis";
+import { useMoralisWeb3Api } from "react-moralis";
 import { Button, makeStyles, Input } from "@material-ui/core"
 
 
@@ -19,24 +19,28 @@ export const Collection = () => {
     const classes = useStyles()
 
 
-    //be able to login and logout
-    const { user, setUserData } = useMoralis();
+    // To use the Moralis API
+    const Web3Api = useMoralisWeb3Api();
 
+
+    //Get the collection address via the Input box
+    const [collection, setCollection] = useState("");
 
 
     //Save the collection address
-    const [collection, setCollection] = useState<number | string | Array<number | string>>(0)
-    const SaveCollection = () => {
-        //add the way to save the collection address here
+    const SaveCollection = async () => {
+        const options = { address: collection, };
+        const nftOwners = await Web3Api.token.getNFTOwners(options);
+        console.log(nftOwners);
         console.log("Collection address saved:", collection)
     }
 
-    //value={collection} onChange={(event) => setCollection(event.currentTarget.value)}
 
+    // front end
     return (
         <div className={classes.container}>
-            <h3>Step 3: Enter the address of the NFT collection:</h3>
-            <h5>Example: 0x52501402101515041504568</h5>
+            <h3>Step 3 (For admins only): Enter the address of the NFT collection:</h3>
+            <h5>Example: 0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB</h5>
             <Input value={collection} onChange={(event) => setCollection(event.currentTarget.value)} />
             <Button color="primary" variant="contained" onClick={SaveCollection}> Save Collection address </Button>
         </div>
