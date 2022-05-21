@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMoralisWeb3Api } from "react-moralis";
+import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import { Button, makeStyles, Input } from "@material-ui/core"
 
 
@@ -21,17 +21,24 @@ export const Collection = () => {
 
     // To use the Moralis API
     const Web3Api = useMoralisWeb3Api();
+    const { Moralis } = useMoralis();
 
 
     //Get the collection address via the Input box
     const [collection, setCollection] = useState("");
 
 
-    //Save the collection address
+    //Get all the owners and save the collection address on Moralis database
     const SaveCollection = async () => {
         const options = { address: collection, };
         const nftOwners = await Web3Api.token.getNFTOwners(options);
-        console.log(nftOwners);
+        console.log("NFT owners found:", nftOwners);
+
+        const Address = Moralis.Object.extend("CollectionsAddresses");
+        const newAddress = new Address();
+        newAddress.set("Name", collection);
+        newAddress.set("Data", nftOwners);
+        await newAddress.save();
         console.log("Collection address saved:", collection)
     }
 
