@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMoralis, } from "react-moralis";
-import { Button, makeStyles } from "@material-ui/core"
+import { Button, makeStyles, CircularProgress } from "@material-ui/core"
 
 
 //make this swag
@@ -51,18 +51,18 @@ export const Metamask = () => {
         <div className={classes.container}>
             {isAuthenticated ? (
                 <div>
-                    <h3>Step 1: Connect your wallet, and follow the steps on metamask :</h3>
-                    <h5>Click on the 3 blue "sign" buttons that will appear</h5>
-                    <Button color="default" variant="contained" onClick={logOut} disabled={isAuthenticating}>
+                    <h3>Step 1 - Connect your wallet:</h3>
+                    <h5>Click on the 3 blue Next, Connect and Sign buttons that will appear on your metamask</h5>
+                    <Button color="default" variant="contained" onClick={logOut} >
                         Disconnect 🦊
                     </Button>
                 </div>
             ) : (
                 <div>
-                    <h3>Step 1: Connect your wallet, and follow the steps on metamask :</h3>
-                    <h5>Click on the 3 blue "sign" buttons that will appear</h5>
-                    <Button color="primary" variant="contained" onClick={login}>
-                        Connect 🦊
+                    <h3>Step 1 - Connect your wallet:</h3>
+                    <h5>Click on the 3 blue Next, Connect and Sign buttons that will appear on your metamask</h5>
+                    <Button color="primary" variant="contained" onClick={login} disabled={isAuthenticating}>
+                        {isAuthenticating ? <CircularProgress size={26} /> : "Connect 🦊"}
                     </Button>
                 </div>
             )
