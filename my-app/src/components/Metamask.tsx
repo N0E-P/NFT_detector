@@ -32,7 +32,6 @@ export const Metamask = () => {
                 .then(function (user) {
                     console.log("logged in user:", user);
                     console.log(user!.get("ethAddress"));
-                    const wallet = user!.get("ethAddress")
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -50,16 +49,22 @@ export const Metamask = () => {
 
     return (
         <div className={classes.container}>
-            <h3>Step 1: Connect your wallet, and follow the steps on metamask :</h3>
-            <h5>Click on the 3 blue "sign" buttons that will appear</h5>
             {isAuthenticated ? (
-                <Button color="default" variant="contained" onClick={logOut} disabled={isAuthenticating}>
-                    Disconnect 🦊
-                </Button>
+                <div>
+                    <h3>Step 1: Connect your wallet, and follow the steps on metamask :</h3>
+                    <h5>Click on the 3 blue "sign" buttons that will appear</h5>
+                    <Button color="default" variant="contained" onClick={logOut} disabled={isAuthenticating}>
+                        Disconnect 🦊
+                    </Button>
+                </div>
             ) : (
-                <Button color="primary" variant="contained" onClick={login}>
-                    Connect 🦊
-                </Button>
+                <div>
+                    <h3>Step 1: Connect your wallet, and follow the steps on metamask :</h3>
+                    <h5>Click on the 3 blue "sign" buttons that will appear</h5>
+                    <Button color="primary" variant="contained" onClick={login}>
+                        Connect 🦊
+                    </Button>
+                </div>
             )
             }
         </div>

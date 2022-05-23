@@ -20,7 +20,7 @@ export const Discord = () => {
 
 
     //be able to login and logout
-    const { user, setUserData } = useMoralis();
+    const { user, setUserData, isAuthenticated } = useMoralis();
 
 
     //Save the discord username
@@ -35,10 +35,17 @@ export const Discord = () => {
 
     return (
         <div className={classes.container}>
-            <h3>Step 2: Enter your full Discord username:</h3>
-            <h5>Example: Giraphe#5480</h5>
-            <Input value={username} onChange={(event) => setUsername(event.currentTarget.value)} />
-            <Button color="primary" variant="contained" onClick={handleSave}> Save Discord Username </Button>
+            {isAuthenticated ? (
+                <div>
+                    <h3>Step 2: Enter your full Discord username:</h3>
+                    <h5>Example: Giraphe#5480</h5>
+                    <Input value={username} onChange={(event) => setUsername(event.currentTarget.value)} />
+                    <Button color="primary" variant="contained" onClick={handleSave}> Save Discord Username </Button>
+                </div>
+            ) : (
+                <h1> </h1>
+            )
+            }
         </div>
     );
 }
