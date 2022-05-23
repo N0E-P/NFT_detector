@@ -13,6 +13,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+let isSaved: Boolean;
+isSaved = false;
 
 export const Discord = () => {
     //use the swag styles
@@ -26,21 +28,37 @@ export const Discord = () => {
     //Save the discord username
     const [username, setUsername] = useState(user?.attributes.username);
     const handleSave = () => {
+        isSaved = false;
         setUserData({
             username
         })
         console.log("Username saved:", username)
+        isSaved = true;
     }
+
+
+
 
 
     return (
         <div className={classes.container}>
             {isAuthenticated ? (
                 <div>
-                    <h3>Step 2: Enter your full Discord username:</h3>
-                    <h5>Example: Giraphe#5480</h5>
-                    <Input value={username} onChange={(event) => setUsername(event.currentTarget.value)} />
-                    <Button color="primary" variant="contained" onClick={handleSave}> Save Discord Username </Button>
+                    {isSaved ? (
+                        <div>
+                            <h3>Step 2: Enter your full Discord username:</h3>
+                            <h5>Example: Giraphe#5480</h5>
+                            <Input value={username} onChange={(event) => setUsername(event.currentTarget.value)} />
+                            <Button color="default" variant="contained" onClick={handleSave}> Change Discord Username </Button>
+                        </div>
+                    ) : (
+                        <div>
+                            <h3>Step 2: Enter your full Discord username:</h3>
+                            <h5>Example: Giraphe#5480</h5>
+                            <Input value={username} onChange={(event) => setUsername(event.currentTarget.value)} />
+                            <Button color="primary" variant="contained" onClick={handleSave}> Save Discord Username </Button>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <h1> </h1>
