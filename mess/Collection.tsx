@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export const Collection = () => {
+const Collection = () => {
     //use the swag styles
     const classes = useStyles()
 
