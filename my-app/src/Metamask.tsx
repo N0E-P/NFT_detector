@@ -11,7 +11,7 @@ export const Metamask = () => {
     //login
     const login = async () => {
         if (!isAuthenticated) {
-            await authenticate({ signingMessage: "Login in" })
+            await authenticate({ signingMessage: "Login into the NFT Detector Dapp" })
                 .then(function (user) {
                     console.log("logged in user:", user);
                     console.log(user!.get("ethAddress"));

@@ -2,6 +2,7 @@ import React from 'react';
 import { Discord } from "./Discord"
 import { Metamask } from "./Metamask"
 import { makeStyles } from "@material-ui/core"
+import NFT_detector_logo from "./NFT_detector_logo.png"
 
 
 //make the app swag
@@ -13,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   title: {
+    backgroundColor: "blutyfe",
+    borderRadius: "20px",
     color: theme.palette.common.white,
     texteAlign: "center",
     padding: theme.spacing(4),
@@ -24,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(5),
     alignItems: "center",
   },
+
+  image: {
+    padding: theme.spacing(10),
+    alignItems: "center",
+  },
 }))
 
 
@@ -32,17 +40,18 @@ function App() {
   const classes = useStyles()
 
 
-  return (
+  return (<>
     <div className={classes.app}>
-      <h1 className={classes.title}>
+      <h1 className={classes.title} >
         Welcome to the Discord NFT Detector!
       </h1>
       <div className={classes.container}>
         <Metamask />
         <Discord />
       </div>
+      <img src={NFT_detector_logo} alt="NFT detector Logo" height="250" width="250" className={classes.image} />
     </div>
-  );
+  </>);
 }
 
 
