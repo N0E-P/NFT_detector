@@ -1,17 +1,31 @@
+/*
+// Start Moralis
+const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+Moralis.start({ serverUrl, appId });
+
+*/
+
+
 function main(collectionAddress) {
-    return "Hello, " + collectionAddress + "!";
+  return "T'Es Super Triangulaire: " + collectionAddress;
+  
+  /*
+  const options = { address: collectionAddress, };
+  const nftOwners = await Web3Api.token.getNFTOwners(options);
+  return "Collection entered: " + collectionAddress + "! Here is the list of NFT Owners:" + nftOwners;
+  */
+  
 }
 
 
 
-/*
-import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 
-
+/*    TO DELETE WHEN NOT USEFULL ANYMORE
 const Collection = () => {
 
     // To use the Moralis API and Moralis
-    const Web3Api = useMoralisWeb3Api();
+    //const Web3Api = useMoralisWeb3Api();
     const { Moralis } = useMoralis();
 
 
