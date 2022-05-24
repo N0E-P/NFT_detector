@@ -1,6 +1,8 @@
-# to start the bot, run this in the terminal : "pip install discord.py" or "pip install discord-py-slash-command"
+# to start the bot, run this in the terminal : "pip install discord.py"                 AND "pip install Js2Py"
+#                                           or "pip install discord-py-slash-command"
 
 import discord
+import js2py
 import os
 from keep_alive import keep_alive
 
@@ -12,11 +14,6 @@ client = discord.Client(intents=intents)
 
 
 #############################################
-
-
-# function to save the address in the database
-def saveAddress(enteredAddress):
-    pass  # WRITE HERE HOW TO SAVE THE ADDRESS
 
 
 # Send the dapp link to the users when they write specific words
@@ -37,8 +34,12 @@ async def on_message(message):
 
     # Sauvegarde de l'addresse et messages quand on écrit $collection
     if message.content.startswith("$collection"):
-        enteredAddress = message.content.split("$collection ", 1)[1]
-        saveAddress(enteredAddress)
+        collectionAddress = message.content.split("$collection ", 1)[1]
+        result, getUsernames = js2py.run_file("getUsernames.js")
+        result = getUsernames.main(collectionAddress)
+        print(result)
+
+        # Messages sent in the chat
         await message.channel.send(
             "**Your collection was added successfuly!** :partying_face:"
         )

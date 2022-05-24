@@ -1,3 +1,10 @@
+function main(collectionAddress) {
+    return "Hello, " + collectionAddress + "!";
+}
+
+
+
+/*
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 
 
@@ -38,3 +45,4 @@ const Collection = () => {
 
     }
 }
+*/
