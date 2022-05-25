@@ -1,7 +1,7 @@
 {
   "name": "NFTdetector",
   "version": "1.0.0",
-  "main": "./discord/bot.js",
+  "main": "./discord-bot/bot.js",
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"

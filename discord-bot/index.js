@@ -1,5 +1,4 @@
-//npm init -y && npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH
-
+// This whole document is just to initialise the bot and to create its commands
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
