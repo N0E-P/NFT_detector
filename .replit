@@ -1,0 +1,2 @@
+language = "nodejs"
+run = ""scripts": {"start": "node index.js"},"

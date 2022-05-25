@@ -1,3 +1,5 @@
+// Before running the program : "npm install discord.js"
+
 const Discord = require("discord.js")
 const client = new Discord.Client()
 
