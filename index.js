@@ -1,4 +1,5 @@
 // Before running the program : "npm install discord.js"
+// If "Error: Cannot find module ‘node:events’" : npm update -g
 
 const Discord = require("discord.js")
 const client = new Discord.Client()
