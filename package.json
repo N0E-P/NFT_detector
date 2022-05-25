@@ -1,9 +1,11 @@
 {
-  "name": "NFTdetector-1",
+  "name": "NFTdetector",
   "version": "1.0.0",
+  "description": "",
   "main": "bot.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -16,6 +18,9 @@
     "url": "https://github.com/N0E-P/NFT_detector/issues"
   },
   "homepage": "https://github.com/N0E-P/NFT_detector#readme",
+  "devDependencies": {
+    "node": "^16.14.2"
+  },
   "dependencies": {
     "@discordjs/rest": "^0.4.1",
     "@material-ui/core": "^4.12.4",
@@ -24,9 +29,5 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-moralis": "^1.3.5"
-  },
-  "devDependencies": {
-    "node": "^16.14.2"
-  },
-  "description": ""
+  }
 }
