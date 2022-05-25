@@ -1,7 +1,6 @@
-// This whole document is just to initialise the bot and to create its commands
+// This whole document is just to initialise the bot and to create its commands.
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-
 const token = process.env['token']
 const CLIENT_ID = process.env['client_id']
 const GUILD_ID = process.env['guild_id']
