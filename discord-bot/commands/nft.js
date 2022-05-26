@@ -1,14 +1,88 @@
-//const DiscordJS = require('discord.js');
+const DiscordJS = require('discord.js')
 
 module.exports = {
   category: 'NFT detector commands',
   description: 'initialise the bot',
   permissions: ['ADMINISTRATOR'],
   guildOnly: true,
-  callback: (message) => {
+  callback: ({message, channel}) => {
     console.log('NFT function starting...')
 
+    message.reply('Enter your username:')
+
+    const filter = (m) => {
+      return m.author.id == message.author.id
+    }
     
+    const collector = channel.createMessageCollector({
+      filter,
+      max: 1,
+      time: 1000 * 60,
+    })
+
+    collector.on('collect', message => {
+      console.log(message.content)
+    })
+
+    collector.on('end', collected => {
+      if (collected.size === 0) {
+        message.reply('You did not provide your NFT collection address')
+        return
+      }
+
+      let text = 'Collected:\n\n'
+
+      collected.forEach((message) => {
+        text += `${message.content}\n`
+      })
+
+      message.reply(text)
+      
+    })
+  },
+}
+
+    /*
+    const questionOne = 'What is your eth address?'
+
+    const questionTwo = 'What is the blockchain? (+possibilities)'
+
+    const filter = (m) => m.author.id === message.author.id
+
+    const collector = new DiscordJS.MessageCollector(message.channel, filter, {
+      time: 1000 * 60, // 60s
+    })
+
+    message.channel.send(questionOne)
+    collector.on('collect', (m) => {}
+    
+    /*
+    collector.on('collect', (m) => {
+      if (counter < questions.length) {
+        m.channel.send(questions[counter++])
+      }
+    })
+
+    collector.on('end', (collected) => {
+      console.log('Collected ${collected.size} messages')
+
+      if (collected.size < questions.length){
+        message.reply('You did not answer the questions in time')
+        return
+      }
+      
+      let counter = 0
+      collected.forEach((value) => {
+        console.log(questions[counter++], value.content)
+      })
+    })
+
+
+
+
+  */
+    
+    /*
     ///////////////////////////////////////////////////
     const reply = 'thisisamessage'
     
@@ -95,5 +169,3 @@ module.exports = {
     */
 
     
-  },
-}
