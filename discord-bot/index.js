@@ -1,28 +1,23 @@
-// This whole document is just to initialise the bot and to create its commands.
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+//This is the main document for the whole discord bot.
+const { Client, Intents } = require('discord.js');
+const WOKCommands = require('wokcommands')
+const path = require('path')
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const keepAlive = require("./server")
 const token = process.env['token']
-const CLIENT_ID = process.env['client_id']
-const GUILD_ID = process.env['guild_id']
 
-const commands = [{
-  name: 'ping',
-  description: 'Replies with Pong!'
-}]; 
 
-const rest = new REST({ version: '9' }).setToken(token);
+// Starts and tell in the terminal when the bot is online
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
 
-(async () => {
-  try {
-    console.log('Started refreshing application (/) commands.');
+  // Use WOKcommands to write commands
+  new WOKCommands(client, {
+    commandsDir: path.join(__dirname, 'commands'),
+  })
+})
 
-    await rest.put(
-      Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
-      { body: commands },
-    );
 
-    console.log('Successfully reloaded application (/) commands.');
-  } catch (error) {
-    console.error(error);
-  }
-})();
+//Let the bot online and access it using the discord token.
+keepAlive()
+client.login(token);
