@@ -1,14 +1,22 @@
 //This is the main document for the whole discord bot.
 const { Client, Intents} = require('discord.js');
+const WOKCommands = require('wokcommands')
+const path = require('path')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const token = process.env['token']
 const keepAlive = require("./server")
 
 
-//Tell in the terminal when the bot is online.
+//When the bot is online
 client.on('ready', () => {
+  //Tell it in the terminal
   console.log(`Logged in as ${client.user.tag}!`);
-});
+
+  // Make commands possible
+  new WOKCommands(client, {
+    commandsDir: path.join(__dirname, 'commands'),
+  })
+})
 
 
 // Use commands.
