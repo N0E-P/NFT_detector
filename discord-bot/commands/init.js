@@ -6,9 +6,11 @@ module.exports = {
   description: 'initialise the bot',
   //permissions: ['ADMINISTRATOR'],
   //guildOnly: true,
-  callback: (message) => {
+  callback: () => {
     console.log('NFT function starting...')
     /*
+    add message in the parenthèses après callback:
+
     const questions = [
       'What is your name?',
       'How old are you?',
