@@ -1,3 +1,5 @@
+// This is a test file that can only work on my own test server
+
 module.exports = {
   category: 'testing',
   description: 'Replies with pong',
@@ -26,7 +28,5 @@ module.exports = {
     return {
       content: reply
     }
-    
   },
-  
 }

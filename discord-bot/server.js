@@ -1,4 +1,4 @@
-// This whole document is just to make the bot stay online using uptimerobot.com
+// This whole file is just to make the bot stay online using uptimerobot.com
 const express = require("express")
 const server = express()
 

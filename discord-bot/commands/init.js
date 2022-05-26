@@ -4,8 +4,8 @@ const DiscordJS = require('discord.js');
 module.exports = {
   category: 'NFT detector commands',
   description: 'initialise the bot',
-  //permissions: ['ADMINISTRATOR'],
-  //guildOnly: true,
+  permissions: ['ADMINISTRATOR'],
+  guildOnly: true,
   callback: () => {
     console.log('NFT function starting...')
     /*
