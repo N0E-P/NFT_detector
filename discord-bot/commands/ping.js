@@ -6,7 +6,7 @@ module.exports = {
   slash: 'both', 
   testOnly: true,
   callback: ({message, interaction }) => {
-    console.log('ping pong command starting...')
+    console.log('Ping pong command starting...')
 
     //The reply
     const reply = 'Pong!'
