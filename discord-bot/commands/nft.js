@@ -8,8 +8,11 @@ module.exports = {
   callback: ({message, channel}) => {
     console.log('NFT function starting...')
 
-    message.reply('Enter your username:')
-
+    // GET NFT COLLECTION ADDRESS
+    message.reply('**Hey!** :sunglasses:')
+    channel.send('To initialize me, please send a message containing only the ETH address of your _NFT collection_.')
+    channel.send('```Example : 0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB```')
+                 
     const filter = (m) => {
       return m.author.id == message.author.id
     }
@@ -26,88 +29,36 @@ module.exports = {
 
     collector.on('end', collected => {
       if (collected.size === 0) {
-        message.reply('You did not provide your NFT collection address')
+        message.reply('You did not provide your NFT collection address. Please write !NFT again to restart.')
         return
       }
-
-      let text = 'Collected:\n\n'
+      
+      let text = 'Thanks! This answer has been collected:\n'
+      let address = message.content
 
       collected.forEach((message) => {
-        text += `${message.content}\n`
+        text += `${message.content}\n`,
+        address = message.content
       })
+      
+      channel.send(text)
+      channel.send('You will need to wait a little bit until we find all the NFT owners of your collection.')
+      console.log('The address has been collected. Starting Moralis with getowners...')
+      //console.log(address)  //it should give the address of the collection
 
-      message.reply(text)
+      
+
+
+      //MORAAAALISSSSS
+
       
     })
-  },
+  }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
-    const questionOne = 'What is your eth address?'
 
-    const questionTwo = 'What is the blockchain? (+possibilities)'
-
-    const filter = (m) => m.author.id === message.author.id
-
-    const collector = new DiscordJS.MessageCollector(message.channel, filter, {
-      time: 1000 * 60, // 60s
-    })
-
-    message.channel.send(questionOne)
-    collector.on('collect', (m) => {}
-    
-    /*
-    collector.on('collect', (m) => {
-      if (counter < questions.length) {
-        m.channel.send(questions[counter++])
-      }
-    })
-
-    collector.on('end', (collected) => {
-      console.log('Collected ${collected.size} messages')
-
-      if (collected.size < questions.length){
-        message.reply('You did not answer the questions in time')
-        return
-      }
-      
-      let counter = 0
-      collected.forEach((value) => {
-        console.log(questions[counter++], value.content)
-      })
-    })
-
-
-
-
-  */
-    
-    /*
-    ///////////////////////////////////////////////////
-    const reply = 'thisisamessage'
-    
-    if (message) {
-      message.reply({
-        content: reply
-      })
-    }
-
-    console.log('NFT function ended.')
-    
-    //**Hey!** :sunglasses:
-    //To initialize me, please send a message containing only the ETH address of your _NFT collection_.
-    //```Example : 0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB```
-
-    //Récupérer sa réponse dans une variable
-    //Faire en sorte que l'on ne prenne les réponses que de celui qui a écrit !NFT 
-
-    //Now, please enter the blokchain where your NFT collection is located.
-    //```You need to enter one of the following answer : eth | bsc | polygon | avalanche | fantom```
-
-    //Récupérer sa réponse dans une variable
-    //Faire en sorte que l'on ne prenne les réponses que de celui qui a écrit !NFT 
-
-    //Your answers have been collected. You will need to wait a little bit until we find all the NFT owners of your collection.
     //During this time, please create a role named "NFT owner" to make them recognisable, and to let them access special channels.
 
 
@@ -124,48 +75,4 @@ module.exports = {
     //Now, the last thing you need to do is to share the following link to the members of your server, so they can proove to the bot that they really own their NFTs by connecting their metamask
     //LINK
     //Thank you for using NFT detector !
-    
-    
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    /*
-    const questions = [
-      'What is your eth address?',
-      'What is the blockchain? (+possibilities)',
-    ]
-    let counter = 0
-
-    const filter = m => m.author.id === message.author.id
-
-    const collector = new DiscordJS.MessageCollector(message.channel, filter, {
-      max: questions.length,
-      time: 1000 * 60 // 60s
-    })
-
-    message.channel.send(questions[counter++])
-    collector.on('collect', m => {
-      if (counter < questions.length) {
-        m.channel.send(questions[counter++])
-      }
-    })
-
-    collector.on('end', collected => {
-      console.log('Collected ${collected.size} messages')
-
-      if (collected.size < questions.length){
-        message.reply('You did not answer the questions in time')
-        return
-      }
-      
-      let counter = 0
-      collected.forEach((value) => {
-        console.log(questions[counter++], value.content)
-      })
-    })
-    */
-
-    
+  */
