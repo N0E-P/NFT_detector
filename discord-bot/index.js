@@ -11,6 +11,7 @@ const token = process.env['token']
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 
+  
   // Use WOKcommands to write commands
   new WOKCommands(client, {
     commandsDir: path.join(__dirname, 'commands'),

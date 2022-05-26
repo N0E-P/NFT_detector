@@ -4,9 +4,11 @@ const DiscordJS = require('discord.js');
 module.exports = {
   category: 'NFT detector commands',
   description: 'initialise the bot',
-  permissions: ['ADMINISTRATOR'],
-  guildOnly: true,
+  //permissions: ['ADMINISTRATOR'],
+  //guildOnly: true,
   callback: (message) => {
+    console.log('NFT function starting...')
+    /*
     const questions = [
       'What is your name?',
       'How old are you?',
@@ -41,5 +43,7 @@ module.exports = {
         console.log(questions[counter++], value.content)
       })
     })
+
+    */
   },
 }

@@ -1,6 +1,5 @@
-// This whole document is just to make the bot stay alive using uptimerobot.com
+// This whole document is just to make the bot stay online using uptimerobot.com
 const express = require("express")
-
 const server = express()
 
 server.all("/", (req, res) => {
