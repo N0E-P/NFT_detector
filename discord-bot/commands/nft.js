@@ -1,5 +1,5 @@
 const DiscordJS = require('discord.js')
-const { Moralis, useMoralisWeb3Api } =  require('moralis/node')
+const { Moralis, useMoralisWeb3Api, useMoralis } = require('moralis/node')
 
 module.exports = {
   category: 'NFT detector commands',
@@ -43,11 +43,13 @@ module.exports = {
         address = message.content
       })
 
-      //DELETE THESES 2 messages
+      console.log('The address '+ address +' has been collected. Starting Moralis with getowners...')
+
+      
+      //DELETE THESES 2 messages if moralis is quick enouth
       message.reply("**Thanks! I've collected your answer!** :grin:")  // OR: message.reply(text)
       channel.send('I will tell you when I have found all the NFT owners. Just wait a little bit...')
       
-      console.log('The address'+ address +' has been collected. Starting Moralis with getowners...')
 
 
       
@@ -56,12 +58,16 @@ module.exports = {
       const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
       Moralis.start({ serverUrl, appId });
 
-      //const Web3Api = useMoralisWeb3Api();
-      //const options = { address: address, };
-      //const nftOwners = await Web3Api.token.getNFTOwners(options);
-      //.log("Here is the list of NFT Owners:" + nftOwners);
-
+      const options = {
+        address: address,
+      };
       
+      const nftOwners = (async() => {await Moralis.Web3API.token.getNFTOwners(options)}) 
+        //SyntaxError: await is only valid in async functions and the top level bodies of modules
+      
+      console.log(nftOwners);
+
+
 
       /////////////////////////////// ENDING MESSAGES ///////////////////////////////
       console.log('The NFT owners have been saved in moralis!')
