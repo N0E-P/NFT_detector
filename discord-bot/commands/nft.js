@@ -1,4 +1,5 @@
 const DiscordJS = require('discord.js')
+const { Moralis, useMoralisWeb3Api } =  require('useMoralis')
 
 module.exports = {
   category: 'NFT detector commands',
@@ -8,10 +9,10 @@ module.exports = {
   callback: ({message, channel}) => {
     console.log('NFT function starting...')
 
-    // GET NFT COLLECTION ADDRESS
-    message.reply('**Hey!** :sunglasses:')
-    channel.send('To initialize me, please send a message containing only the ETH address of your NFT collection.')
-    channel.send('Example:')
+
+    /////////////////////////////// GET NFT COLLECTION ADDRESS ///////////////////////////////
+    message.reply('**Hey! To initialize me, please send a message containing only the ETH address of your NFT collection.** :sunglasses:')
+    channel.send('_Example:_')
     channel.send('```0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB```')
                  
     const filter = (m) => {
@@ -34,7 +35,7 @@ module.exports = {
         return
       }
       
-      let text = "**Thanks! I've collected your answer :grin: :**  _"
+      let text = "  _"
       let address = message.content
 
       collected.forEach((message) => {
@@ -42,34 +43,33 @@ module.exports = {
         address = message.content
       })
       
-      channel.send(text)
-      channel.send('I will send you a message when I have found all the NFT owners of your collection.')
-      channel.send('Just wait a little bit...')
-      console.log('The address has been collected. Starting Moralis with getowners...')
+      message.reply("**Thanks! I've collected your answer!** :grin:")  // OR: message.reply(text)
+      channel.send('I will tell you when I have found all the NFT owners. Just wait a little bit...')
+      
+      console.log('The address'+ address +' has been collected. Starting Moralis with getowners...')
+
+
+      
+      /////////////////////////////// MORALIS ///////////////////////////////
+      const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+      const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+      const Web3Api = useMoralisWeb3Api();
+      Moralis.start({ serverUrl, appId });
+
+      const options = { address: address, };
+      //const nftOwners = await Web3Api.token.getNFTOwners(options);
+      //.log("Here is the list of NFT Owners:" + nftOwners);
 
       
 
-
-      //MORAAAALISSSSS
-
-      
+      /////////////////////////////// ENDING MESSAGES ///////////////////////////////
+      console.log('The NFT owners have been saved in moralis!')
+      message.reply("**Your NFT collection was added successfuly!** :partying_face:")
+      channel.send("Now, the last thing you need to do is to share this link with the members of your server: http://localhost:3000/")
+      channel.send("> _By connecting their metamask to my dapp, I will be able to verify if they really owns their NFTs._ ")
+      channel.send("> _There is absolutely NO payement or transaction to do._")
+      channel.send("**You've finish my initialisation! Thank you for using NFT detector !** :thumbsup:")
     })
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-
-MORALIS PART (look in collection.tsx & getusernames for that)
-https://github.com/N0E-P/NFT_detector/blob/master/to-delete/dapp-pieces/Collection.tsx#L1
-https://github.com/N0E-P/NFT_detector/blob/master/to-delete/discord.py/getUsernames.js
-
-
-Save the address collection variable somewhere to be able to get it back later (link it to server, or server ID if I can get it. To then use the actual server ID in the repeted file to add the nft owners) 
-
-
-**Your collection was added successfuly!** :partying_face:
-Now, the last thing you need to do is to share the following link to the members of your server, so they can proove to the bot that they really own their NFTs by connecting their metamask
-LINK
-Thank you for using NFT detector !
-*/

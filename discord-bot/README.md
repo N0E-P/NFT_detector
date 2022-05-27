@@ -5,6 +5,8 @@
 
        npm init -y && npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH
 
+       npm install moralis
+
 3. Add a secret environment variable named "token" with the password of your discord bot, in replit.
 4. Click the run button.
 
