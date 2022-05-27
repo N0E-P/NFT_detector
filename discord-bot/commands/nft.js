@@ -66,6 +66,7 @@ module.exports = {
         /////////////////////////////// ENDING MESSAGES ///////////////////////////////
         message.reply("**Your NFT collection was added successfuly!** :partying_face:")
         channel.send("Now, the last thing you need to do is to share this link with the members of your server: http://localhost:3000/")
+        channel.send("(This isn't a working link, the dapp website is not live for now. Check back later to get an update!)")
         channel.send("> _By connecting their metamask to the NFT Detector dapp, I will be able to verify if they really owns their NFTs._ ")
         channel.send("> _There is absolutely NO payement or transaction to do._")
         channel.send("**You've finish my initialisation! Thank you for using NFT detector !** :thumbsup:")
