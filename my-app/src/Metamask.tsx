@@ -1,3 +1,4 @@
+//This file is used to connect the metamask of the user
 import React from 'react';
 import { useMoralis, } from "react-moralis";
 import { Button, CircularProgress } from "@material-ui/core"

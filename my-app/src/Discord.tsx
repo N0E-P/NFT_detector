@@ -1,3 +1,4 @@
+// This file is used to get the discord username from the user
 import React, { useState } from 'react';
 import { useMoralis, } from "react-moralis";
 import { Button, Input } from "@material-ui/core"

@@ -11,7 +11,7 @@ module.exports = {
     //The reply
     const reply = 'Pong!'
 
-    // legacy command ??
+    // legacy command
     if (message) {
       message.reply({
         content: reply

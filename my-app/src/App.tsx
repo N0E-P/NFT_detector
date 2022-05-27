@@ -1,3 +1,4 @@
+// This file is to organise all the dapp, and to apply beautiful styles
 import React from 'react';
 import { Discord } from "./Discord"
 import { Metamask } from "./Metamask"

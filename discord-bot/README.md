@@ -9,6 +9,7 @@
 
 
 4. Add a secret environment variable named "token" with the password of your discord bot, in replit.
-5. Click the run button.
+   
+6. Click the run button.
 
-6. Then, if you've not done it yet, make sure this bot stay online by going on uptimerobot.com and by pasting the https address of the bot.
+7. Then, if you've not done it yet, make sure this bot stay online by going on uptimerobot.com and by pasting the https address of the bot.

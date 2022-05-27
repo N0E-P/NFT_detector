@@ -1,3 +1,4 @@
+// The ground of all the app
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

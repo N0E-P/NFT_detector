@@ -1,3 +1,4 @@
+// This file is used to run the command !NFT in discord, and to initialize the bot
 const DiscordJS = require('discord.js')
 const { Moralis, useMoralisWeb3Api, useMoralis } = require('moralis/node')
 
