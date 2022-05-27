@@ -1,6 +1,7 @@
 const DiscordJS = require('discord.js')
 const { Moralis, useMoralisWeb3Api, useMoralis } = require('moralis/node')
 
+//Specificities of the command
 module.exports = {
   category: 'NFT detector commands',
   description: 'initialise the bot',
@@ -18,16 +19,11 @@ module.exports = {
     const filter = (m) => {
       return m.author.id == message.author.id
     }
-    
     const collector = channel.createMessageCollector({
       filter,
       max: 1,
       time: 1000 * 60,
     })
-
-    //collector.on('collect', message => {
-    //  console.log(message.content)
-    // })
 
     collector.on('end', collected => {
       if (collected.size === 0) {
@@ -35,23 +31,14 @@ module.exports = {
         return
       }
       
-      let text = "  _"
       let address = message.content
-
       collected.forEach((message) => {
-        text += `${message.content}_`,
         address = message.content
       })
 
-      console.log('The address '+ address +' has been collected. Starting Moralis...')
-
+      console.log('The address '+ address +' has been collected.')
+      channel.send("Thanks! Just wait a little bit while I'm saving save your answer...")
       
-      //DELETE THESES 2 messages if moralis is quick enouth
-      message.reply("**Thanks! I've collected your answer!** :grin:")  // OR: message.reply(text)
-      channel.send('I will tell you when I have found all the NFT owners. Just wait a little bit...')
-      
-
-
       
       /////////////////////////////// MORALIS ///////////////////////////////
       const iUseMoralis = (async() => {
@@ -61,10 +48,7 @@ module.exports = {
 
         
         //Get owners:
-        const options = {
-          address: address,
-        };
-
+        const options = {address: address,};
         const nftOwners = await Moralis.Web3API.token.getNFTOwners(options);
         console.log('The NFT owners have been found!');
 
@@ -78,16 +62,16 @@ module.exports = {
         console.log("Collection address saved:", address)
         
 
-        
         /////////////////////////////// ENDING MESSAGES ///////////////////////////////
-        
         message.reply("**Your NFT collection was added successfuly!** :partying_face:")
         channel.send("Now, the last thing you need to do is to share this link with the members of your server: http://localhost:3000/")
-        channel.send("> _By connecting their metamask to my dapp, I will be able to verify if they really owns their NFTs._ ")
+        channel.send("> _By connecting their metamask to the NFT Detector dapp, I will be able to verify if they really owns their NFTs._ ")
         channel.send("> _There is absolutely NO payement or transaction to do._")
         channel.send("**You've finish my initialisation! Thank you for using NFT detector !** :thumbsup:")
-        }) //End of Moralis function
-      const startingMoralis = iUseMoralis(); //This is only to start and use the Moralis function
-    }) //End of end of collector function
-  } //End of callback function
-} //End of module.export function
+        })
+      
+      //Start and use the Moralis function
+      const startingMoralis = iUseMoralis(); 
+    })
+  }
+}
