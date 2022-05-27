@@ -11,7 +11,7 @@ module.exports = {
 
 
     /////////////////////////////// GET NFT COLLECTION ADDRESS ///////////////////////////////
-    message.reply('**Hey! To initialize me, please send a message containing only the ETH address of your NFT collection.** :sunglasses:')
+    message.reply('**Hey! To initialize me, please send a message containing only the ETH address of your NFT collection.** :grin:')
     channel.send('_Example:_')
     channel.send('```0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB```')
                  
@@ -25,9 +25,9 @@ module.exports = {
       time: 1000 * 60,
     })
 
-    collector.on('collect', message => {
-      console.log(message.content)
-    })
+    //collector.on('collect', message => {
+    //  console.log(message.content)
+    // })
 
     collector.on('end', collected => {
       if (collected.size === 0) {
@@ -43,7 +43,7 @@ module.exports = {
         address = message.content
       })
 
-      console.log('The address '+ address +' has been collected. Starting Moralis with getowners...')
+      console.log('The address '+ address +' has been collected. Starting Moralis...')
 
       
       //DELETE THESES 2 messages if moralis is quick enouth
@@ -59,21 +59,27 @@ module.exports = {
         const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
         Moralis.start({ serverUrl, appId });
 
+        
         //Get owners:
         const options = {
           address: address,
         };
 
         const nftOwners = await Moralis.Web3API.token.getNFTOwners(options);
-        console.log(nftOwners);
         console.log('The NFT owners have been found!');
 
         
+        // Save the NFT owners in the Moralis Database
+        const Address = Moralis.Object.extend("CollectionsAddresses");
+        const newAddress = new Address();
+        newAddress.set("Name", address);
+        newAddress.set("Data", nftOwners);
+        await newAddress.save();
+        console.log("Collection address saved:", address)
         
 
         
         /////////////////////////////// ENDING MESSAGES ///////////////////////////////
-        console.log('The NFT owners have been saved in moralis!')
         
         message.reply("**Your NFT collection was added successfuly!** :partying_face:")
         channel.send("Now, the last thing you need to do is to share this link with the members of your server: http://localhost:3000/")
