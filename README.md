@@ -1,7 +1,7 @@
 <h1>How to use NFT detector:</h1>
 1. Add the NFT Detector Bot to your discord server with this link:
 
-_https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissions=1375194938400&scope=bot_
+_https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissions=8&scope=bot%20applications.commands_
 
 2. Write ```!NFT``` on any channel.
    > You need to be an administrator to use it.
