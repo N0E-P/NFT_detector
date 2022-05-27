@@ -42,7 +42,8 @@ module.exports = {
         text += `${message.content}_`,
         address = message.content
       })
-      
+
+      //DELETE THESES 2 messages
       message.reply("**Thanks! I've collected your answer!** :grin:")  // OR: message.reply(text)
       channel.send('I will tell you when I have found all the NFT owners. Just wait a little bit...')
       
