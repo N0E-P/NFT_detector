@@ -12,7 +12,7 @@ _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissio
 
 5. Wait while the bot save your address on our database.
    > It can take up to 5 minutes.
-7. If you receive a message starting by ```Your NFT collection was added successfuly!```:
+7. If you receive a message starting by: ```Your NFT collection was added successfuly!```
    > It means that the initialisation succeded.
 
     But if you receive an error message, or nothing after 5 minutes:
@@ -26,7 +26,7 @@ _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissio
 7. You've finish the setup! The bot will automatically add roles to the discord members who owns NFTs.
 
    Now, feel free to create text and vocal channels only for members with the ```NFT owner``` role.
->
+
 **Thank you for using NFT detector!** :grin::thumbsup:
 
 ```Created by N0E-P```
