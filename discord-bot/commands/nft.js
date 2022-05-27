@@ -54,19 +54,22 @@ module.exports = {
 
       
       /////////////////////////////// MORALIS ///////////////////////////////
-      
-      
       const iUseMoralis = (async() => {
         const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
         const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
         Moralis.start({ serverUrl, appId });
 
+        //Get owners:
         const options = {
           address: address,
         };
 
         const nftOwners = await Moralis.Web3API.token.getNFTOwners(options);
         console.log(nftOwners);
+        console.log('The NFT owners have been found!');
+
+        
+        
 
         
         /////////////////////////////// ENDING MESSAGES ///////////////////////////////
@@ -77,14 +80,8 @@ module.exports = {
         channel.send("> _By connecting their metamask to my dapp, I will be able to verify if they really owns their NFTs._ ")
         channel.send("> _There is absolutely NO payement or transaction to do._")
         channel.send("**You've finish my initialisation! Thank you for using NFT detector !** :thumbsup:")
-        }) 
-      
-      const jefaisdestests = iUseMoralis();
-
-
-
-      
-    })
-  }
-}
-
+        }) //End of Moralis function
+      const startingMoralis = iUseMoralis(); //This is only to start and use the Moralis function
+    }) //End of end of collector function
+  } //End of callback function
+} //End of module.export function
