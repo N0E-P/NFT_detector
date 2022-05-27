@@ -54,29 +54,36 @@ module.exports = {
 
       
       /////////////////////////////// MORALIS ///////////////////////////////
-      const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
-      const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
-      Moralis.start({ serverUrl, appId });
-
-      const options = {
-        address: address,
-      };
       
-      const nftOwners = (async() => {await Moralis.Web3API.token.getNFTOwners(options)}) 
-        //SyntaxError: await is only valid in async functions and the top level bodies of modules
       
-      console.log(nftOwners);
+      const iUseMoralis = (async() => {
+        const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+        const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+        Moralis.start({ serverUrl, appId });
 
+        const options = {
+          address: address,
+        };
 
+        const nftOwners = await Moralis.Web3API.token.getNFTOwners(options);
+        console.log(nftOwners);
 
-      /////////////////////////////// ENDING MESSAGES ///////////////////////////////
-      console.log('The NFT owners have been saved in moralis!')
+        
+        /////////////////////////////// ENDING MESSAGES ///////////////////////////////
+        console.log('The NFT owners have been saved in moralis!')
+        
+        message.reply("**Your NFT collection was added successfuly!** :partying_face:")
+        channel.send("Now, the last thing you need to do is to share this link with the members of your server: http://localhost:3000/")
+        channel.send("> _By connecting their metamask to my dapp, I will be able to verify if they really owns their NFTs._ ")
+        channel.send("> _There is absolutely NO payement or transaction to do._")
+        channel.send("**You've finish my initialisation! Thank you for using NFT detector !** :thumbsup:")
+        }) 
       
-      message.reply("**Your NFT collection was added successfuly!** :partying_face:")
-      channel.send("Now, the last thing you need to do is to share this link with the members of your server: http://localhost:3000/")
-      channel.send("> _By connecting their metamask to my dapp, I will be able to verify if they really owns their NFTs._ ")
-      channel.send("> _There is absolutely NO payement or transaction to do._")
-      channel.send("**You've finish my initialisation! Thank you for using NFT detector !** :thumbsup:")
+      const jefaisdestests = iUseMoralis();
+
+
+
+      
     })
   }
 }
