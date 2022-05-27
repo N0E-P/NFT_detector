@@ -1,5 +1,5 @@
 const DiscordJS = require('discord.js')
-const { Moralis, useMoralisWeb3Api } =  require('useMoralis')
+const { Moralis, useMoralisWeb3Api } =  require('moralis/node')
 
 module.exports = {
   category: 'NFT detector commands',
@@ -53,10 +53,10 @@ module.exports = {
       /////////////////////////////// MORALIS ///////////////////////////////
       const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
       const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
-      const Web3Api = useMoralisWeb3Api();
       Moralis.start({ serverUrl, appId });
 
-      const options = { address: address, };
+      //const Web3Api = useMoralisWeb3Api();
+      //const options = { address: address, };
       //const nftOwners = await Web3Api.token.getNFTOwners(options);
       //.log("Here is the list of NFT Owners:" + nftOwners);
 
@@ -64,6 +64,7 @@ module.exports = {
 
       /////////////////////////////// ENDING MESSAGES ///////////////////////////////
       console.log('The NFT owners have been saved in moralis!')
+      
       message.reply("**Your NFT collection was added successfuly!** :partying_face:")
       channel.send("Now, the last thing you need to do is to share this link with the members of your server: http://localhost:3000/")
       channel.send("> _By connecting their metamask to my dapp, I will be able to verify if they really owns their NFTs._ ")
