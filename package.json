@@ -24,8 +24,10 @@
     "@discordjs/rest": "^0.4.1",
     "discord-api-types": "^0.33.0",
     "discord.js": "^13.7.0",
+    "express": "^4.18.1",
     "moralis": "^1.7.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "wokcommands": "^1.5.3"
   },
   "description": ""
 }
