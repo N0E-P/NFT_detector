@@ -27,6 +27,22 @@ _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissio
 
    Now, feel free to create text and vocal channels only for members with the ```NFT owner``` role.
 
+<h1>How to start the bot:</h1>
+1. Go on replit.com and add this repo.
+
+2. Paste theses 2 commands in the shell:
+   
+       npm install moralis
+
+       npm init -y && npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH
+
+
+4. Add a secret environment variable named "token" with the password of your discord bot, in replit.
+   
+6. Click the run button.
+
+7. Then, if you've not done it yet, make sure this bot stay online by going on uptimerobot.com and by pasting the https address of the bot.
+
 **Thank you for using NFT detector!** :grin::thumbsup:
 
 ```Created by N0E-P```
