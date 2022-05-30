@@ -1,4 +1,4 @@
-<h1>Here is the link of the dapp: </h1> https://github.com/N0E-P/NFT_detector_dapp
+<h1>Here is the link of the dapp repository: </h1> https://github.com/N0E-P/NFT_detector_dapp
 
 <h1>How to use NFT detector:</h1>
 1. Add the NFT Detector Bot to your discord server with this link:
@@ -20,7 +20,7 @@ _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissio
     But if you receive an error message, or nothing after 5 minutes:
    > It means that the initialisation failed. Verify your NFT address and restart the  ```!NFT``` command.
 
-6. Share this link with the members of your server: _http://localhost:3000/_ _(this is just a demo link)_
+6. Share this link with the members of your server: _https://zxhf5v44ppmy.usemoralis.com/_
    > _By connecting their metamask to the NFT Detector Dapp, the bot will be able to verify if they got some NFTs from your collection or not. And by the same time, it will link their wallet to their discord username._
    >
    > _This service is free. There is absolutely NO payement or transaction to do on the Dapp._ 
