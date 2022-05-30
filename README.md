@@ -30,7 +30,7 @@ _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissio
    Now, feel free to create text and vocal channels only for members with the ```NFT owner``` role.
 
 <h1>How to start the bot:</h1>
-1. Go on replit.com and add this repo.
+1. Fork this repo and go on replit.com.
 
 2. Paste theses 2 commands in the shell:
    
