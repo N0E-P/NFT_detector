@@ -32,13 +32,15 @@ module.exports = {
       time: 1000 * 60,
     })
 
-    
-    let admin = message.author
+
+    //know who send the !nft message
+    let creator = message.author
     collector.on('collect', () => {
-      admin = message.author
-      console.log(admin)
+      creator = message.author.id
+      console.log(creator)
     })
 
+    
     // Tell the person that he didn't answer fast enought. Or saying that his address has been successfully collected, and continue.
     collector.on('end', collected => {
       if (collected.size === 0) {
@@ -64,16 +66,20 @@ module.exports = {
       /////////////////////////////// GET NFT COLLECTION BLOCKCHAIN ///////////////////////////////
       channel.send('Now, choose your blockchain by selecting the corresponding emoji.')
       message.react('🥳')
-      message.react('🥳')
       // message.react(':regional_indicator_b:')
       // message.react(':regional_indicator_p:')
       // message.react(':regional_indicator_a:')
       // message.react(':regional_indicator_f:')
+      
 
+
+      //🥳
+      //:partying_face:
+      
       
       //Make sure to only get the response of the person who run this command. Not somebody else.
-      filter = (reaction, user, admin) => {
-        return reaction.emoji.name === '🥳' && user === admin;
+      filter = (reaction, user, creator) => {
+        return reaction.emoji === '🥳' && user.id === creator;
       }
 
       
