@@ -1,5 +1,7 @@
 const DiscordJS = require('discord.js')
 
+
+//Specificities of the command
 module.exports = {
   category: 'NFT detector commands',
   description: 'TEEEEEEEEEEEEEEEEEST',
@@ -8,8 +10,9 @@ module.exports = {
   callback: ({message, channel}) => {
     console.log('NFTest function starting...')// TO DELETE
 
-
+  
     //Messages from the bot
+    channel.send('succeded!')
     message.react('🇪')
     message.react('🇧')
     message.react('🇵')
@@ -34,6 +37,7 @@ module.exports = {
       console.log(reaction.emoji) // TO DELETE
       chosenEmoji = reaction.emoji.name
     });
+    
     
     // saying that he didn't answer fast enought, or continue.
     collector.on('end', collected => {
@@ -65,7 +69,7 @@ module.exports = {
         return
       }
         
-      
+      //Finish message
       channel.send('succeded!')
       console.log(chosenEmoji) // TO DELETE
       console.log(blockchain) // TO DELETE
