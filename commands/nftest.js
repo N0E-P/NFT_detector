@@ -6,41 +6,44 @@ module.exports = {
   permissions: ['ADMINISTRATOR'],
   guildOnly: true,
   callback: ({message, channel}) => {
-    
-    console.log('NFTest function starting...')
+    console.log('NFTest function starting...')// TO DELETE
+
+
+    //Messages from the bot
     message.react('🇪')
     message.react('🇧')
     message.react('🇵')
     message.react('🇦')
     message.react('🇫')
 
-    
+
+    //Make sure that the bot only take the answer from the admin
     const filter = (reaction, user) => {
 	    return user.id === message.author.id;
     };
+
     
-    
+    //Start the emoji collector and create the chosenEmoji variable, to store the result
     const collector = message.createReactionCollector({ filter, max: 1 , time: 60000 });
     let chosenEmoji
+
     
-    
+    // Save the chosen emoji into a variable
     collector.on('collect', (reaction, user) => {
-    	console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
-      console.log(reaction.emoji)
+    	console.log(`Collected ${reaction.emoji.name} from ${user.tag}`); // TO DELETE
+      console.log(reaction.emoji) // TO DELETE
       chosenEmoji = reaction.emoji.name
     });
     
-    
+    // saying that he didn't answer fast enought, or continue.
     collector.on('end', collected => {
       if (collected.size === 0) {
-        message.reply('You did not answer.')
-        console.log('No answer')
+        message.reply('You did not answer fast enouth. Please write _!NFT_ again to restart.')
         return
       }
 
       
-
-      
+      //convert the emoji into a blockchain name
       let blockchain
       if (chosenEmoji === '🇪'){
         blockchain = 'eth'
@@ -64,8 +67,8 @@ module.exports = {
         
       
       channel.send('succeded!')
-      console.log(chosenEmoji)
-      console.log(blockchain)
+      console.log(chosenEmoji) // TO DELETE
+      console.log(blockchain) // TO DELETE
       return
     });
   }
