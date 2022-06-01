@@ -50,7 +50,7 @@ module.exports = {
       
       /////////////////////////////// GET THE BLOCKCHAIN ///////////////////////////////
       channel.send('**Now, please click on the emoji representing the blockchain where your NFT collection is located.**')
-      message.channel.send({content: '🇪  Ethereum  |   🇧  Binance Smart Chain  |   🇵  Polygon  |   🇦  Avalanche  |   🇫  Fantom'})
+      message.channel.send({content: '🇪  Ethereum  |   🇧  Binance Smart Chain  |   🇵  Polygon / Matic  |   🇦  Avalanche  |   🇫  Fantom'})
         .then(mssg => {
           mssg.react('🇪')
           mssg.react('🇧')
@@ -128,7 +128,8 @@ module.exports = {
               // Save the NFT owners in the Moralis Database
               const Address = Moralis.Object.extend("CollectionsAddresses");
               const newAddress = new Address();
-              newAddress.set("Name", address);
+              newAddress.set("Address", address);
+              newAddress.set("Blockchain", blockchain);
               newAddress.set("Data", nftOwners);
               await newAddress.save();
 
@@ -140,7 +141,7 @@ module.exports = {
               message.reply("**The last thing you need to do is to tell your server's members to use the**  `!NFT`  **command.**")
               channel.send("You can also tell them to go directly on the NFT Detector dapp: *https://zxhf5v44ppmy.usemoralis.com* ")
               channel.send("> `Everybody that owns an NFT needs to connect their wallet to the dapp to be able to be verified. Try to use the command and the dapp yourself!`")
-              channel.send("**_You've finish my initialisation successfuly!  Thank you for using NFT detector!_**  :partying_face:")      
+              channel.send("**_You've finish my initialisation successfuly!  Thank you for using NFT detector!_**   :partying_face:")      
               return
               })
             
