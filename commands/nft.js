@@ -10,8 +10,13 @@ module.exports = {
   callback: async ({message, channel}) => {
     console.log('NFT function starting...')
     
-    channel.send('**Hi ' + message.author.username +'!**')
-    //click on this button to go on the NFT Detector Dapp
+    channel.send('**Hi ' + message.author.username +'!**  :grin:')
+    //If you have an NFT, you can get access to specials texts and vocals channels on this server.
+
+
+    
+    //channel.send('Click on this button to go on the NFT Detector Dapp')
+    
     // channel.send("> By connecting their metamask to the NFT Detector dapp, I will be able to verify if they really owns their NFTs. ")
     // channel.send("> There is absolutely NO payement or transaction to do.")
     //We will never DM you or ask you for your private key
@@ -22,18 +27,14 @@ module.exports = {
       .addComponents(
         new MessageButton()
           .setCustomId('Get_link')
-          .setEmoji('✔️')
-          .setLabel('Click me!')
+          .setLabel(' Go to the NFT Detector Dapp ')
           .setStyle('SUCCESS')
       )
 
 
-    await message.reply({
-      content: 'clcikk beloxxx',
+    await channel.send({
+      content: 'Click',
       components: [row],
-
-
-      
     })
   }
 }
