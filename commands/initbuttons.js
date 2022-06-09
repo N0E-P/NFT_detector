@@ -1,4 +1,6 @@
-// This file is used to run the command !init in discord, and to initialize the bot
+// THIS IS A TEST FILE TO USE BUTTONS INSTEAD OF EMOJIS TO CHOOSE THE BLOCKCHAIN
+
+
 const DiscordJS = require('discord.js')
 const {MessageActionRow, MessageButton} = require('discord.js')
 const { Moralis, useMoralisWeb3Api, useMoralis } = require('moralis/node')
