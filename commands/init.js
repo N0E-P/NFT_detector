@@ -1,6 +1,7 @@
 // This file is used to run the command !init in discord, and to initialize the bot
 const DiscordJS = require('discord.js')
 const { Moralis, useMoralisWeb3Api, useMoralis } = require('moralis/node')
+const {setAPIRateLimit} = require('moralis')
 
 
 //Specificities of the command
@@ -112,30 +113,37 @@ module.exports = {
 
 
 
-            
+
             /////////////////////////////// MORALIS ///////////////////////////////
             const iUseMoralis = (async() => {
               const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
               const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
               Moralis.start({ serverUrl, appId });
-      
               
-              //Get owners:
-              const options = {chain: blockchain, address: address};
-              const nftOwners = await Moralis.Web3API.token.getNFTOwners(options);
-      
+            
+              //Get the owners:
+              const options = {chain: blockchain, address: address,};
+              let objectOwners = await Moralis.Web3API.token.getNFTOwners(options);
+              let stringOwners
+              let allOwners = ""
+              while (objectOwners.next){
+                objectOwners = await objectOwners.next()
+                stringOwners = JSON.stringify(objectOwners)
+                allOwners = allOwners + stringOwners
+              }
+
               
               // Save the NFT owners in the Moralis Database
               const Address = Moralis.Object.extend("CollectionsAddresses");
               const newAddress = new Address();
               newAddress.set("Address", address);
               newAddress.set("Blockchain", blockchain);
-              newAddress.set("Data", nftOwners);
+              newAddress.set("Data", allOwners);
               await newAddress.save();
 
 
+
               
-      
               /////////////////////////////// ENDING MESSAGES ///////////////////////////////
               console.log("The NFT owners have been found and saved in moralis.")
               channel.send("**Thanks! The last thing you need to do is to tell your server's members to use the**  `!NFT`  **command.**")
