@@ -126,14 +126,7 @@ module.exports = {
 
 
             //Start the repeat function and chose the time to repeat in minutes
-
-            //setInterval(addRoles, 1000 * 60 * 0.1); 
-            //don't have the appropriate variables. 
-            //Send : "addRoles function starting...undefinedundefinedundefined"
-            setInterval(addRoles, 1000 * 60 * 0.1, server, address, blockchain)
-            //setInterval(addRoles(address, blockchain, server), 1000 * 60 * 0.1);
-            //work one time and have the variables, but don't work after it. 
-            //Send : TypeError [ERR_INVALID_CALLBACK]: Callback must be a function. Received Promise { undefined }
+            setInterval(addRoles, 1000 * 60 * 0.5, server, address, blockchain)
           })
         })
     }
@@ -141,17 +134,11 @@ module.exports = {
 
     async function addRoles(server, address, blockchain) {
       console.log("addRoles function starting...");
-      console.log("server :" + server)
-      console.log("address :" + address)
-      console.log("blockchain :" + blockchain)
 
 
 
-      //messageS
+      //messages
       console.log("addRoles function ended");
-
-
-
     }
 
 
@@ -161,8 +148,6 @@ module.exports = {
 
 
 /* BONUS NOTES :
-(Address, Blockchain, Server)
-(address, blockchain, server)
 
 
 //Real first moralis script:
@@ -180,13 +165,10 @@ newAddress.set("Server", server);
 await newAddress.save();
 
 
-server = client.guilds.cache.get("the guild id");
-console.log(the guild id)
-
 
 
 //Get the owners:
-const options = {chain: blockchain, address: address,};
+const options = {chain: blockchain, address: address};
 let objectOwners = await Moralis.Web3API.token.getNFTOwners(options);
 let stringOwners
 let allOwners = ""
