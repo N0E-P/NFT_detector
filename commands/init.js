@@ -125,18 +125,25 @@ module.exports = {
             channel.send("**_You've finish my initialisation successfuly!  Thank you for using NFT detector!_**   :partying_face:")
 
 
-            //Start the repeat function
-            addRoles(address, server, blockchain)
+            //Start the repeat function and chose the time to repeat in minutes
+
+            //setInterval(addRoles, 1000 * 60 * 0.1); 
+            //don't have the appropriate variables. 
+            //Send : "addRoles function starting...undefinedundefinedundefined"
+            setInterval(addRoles, 1000 * 60 * 0.1, server, address, blockchain)
+            //setInterval(addRoles(address, blockchain, server), 1000 * 60 * 0.1);
+            //work one time and have the variables, but don't work after it. 
+            //Send : TypeError [ERR_INVALID_CALLBACK]: Callback must be a function. Received Promise { undefined }
           })
         })
     }
 
 
-    async function addRoles(address, blockchain, server) {
-      const Address = address
-      const Blockchain = blockchain
-      const Server = server
-      console.log("addRoles function starting..." + Server + Address + Blockchain);
+    async function addRoles(server, address, blockchain) {
+      console.log("addRoles function starting...");
+      console.log("server :" + server)
+      console.log("address :" + address)
+      console.log("blockchain :" + blockchain)
 
 
 
@@ -144,8 +151,7 @@ module.exports = {
       console.log("addRoles function ended");
 
 
-      //Chose the time to repeat in minutes
-      setTimeout(addRoles(Address, Blockchain, Server), 1000 * 60 * 0.1);
+
     }
 
 
@@ -156,6 +162,7 @@ module.exports = {
 
 /* BONUS NOTES :
 (Address, Blockchain, Server)
+(address, blockchain, server)
 
 
 //Real first moralis script:
