@@ -3,9 +3,13 @@ const DiscordJS = require('discord.js');
 const WOKCommands = require('wokcommands')
 const path = require('path')
 const keepAlive = require("./server")
-//const token = process.env['token'] //With replit.com
+
+//With replit.com, you have to use the following code to get the token:
+//const token = process.env['token'] 
+
+//With VSCode, you have to use the following code to get the token:
 require('custom-env').env('staging')
-token = process.env.TOKEN //With VSCode
+token = process.env.TOKEN
 
 
 //Use Discord.js
