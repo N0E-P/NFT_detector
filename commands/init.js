@@ -126,31 +126,38 @@ module.exports = {
 
 
             //Start the repeat function
-            repeat(address, server, blockchain)
+            addRoles(address, server, blockchain)
           })
         })
     }
 
 
-    async function repeat(address, server, blockchain) {
-      console.log("AddRole function starting..." + server + address + blockchain)
+    async function addRoles(address, blockchain, server) {
+      const Address = address
+      const Blockchain = blockchain
+      const Server = server
+      console.log("addRoles function starting..." + Server + Address + Blockchain);
 
 
-      //message
-      console.log("Repeat function ended")
+
+      //messageS
+      console.log("addRoles function ended");
 
 
       //Chose the time to repeat in minutes
-      setTimeout(repeat(address, server, blockchain), 60000 * 0.5);
+      setTimeout(addRoles(Address, Blockchain, Server), 1000 * 60 * 0.1);
     }
 
 
-    getCollectionAddress(message, channel) //Start the script
+    getCollectionAddress(message, channel); //Start the script
   }
 }
 
 
 /* BONUS NOTES :
+(Address, Blockchain, Server)
+
+
 //Real first moralis script:
 const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
 const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
