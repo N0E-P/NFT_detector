@@ -3,7 +3,9 @@ const DiscordJS = require('discord.js');
 const WOKCommands = require('wokcommands')
 const path = require('path')
 const keepAlive = require("./server")
-const token = process.env['token']
+//const token = process.env['token'] //With replit.com
+require('custom-env').env('staging')
+token = process.env.TOKEN //With VSCode
 
 
 //Use Discord.js
@@ -20,7 +22,7 @@ const client = new DiscordJS.Client({
 // Start the bot & wokcommands, and tell in the terminal when the bot is online
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  
+
   new WOKCommands(client, {
     commandsDir: path.join(__dirname, 'commands'),
     testServers: ['974204394742624316']
