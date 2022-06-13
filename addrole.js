@@ -1,8 +1,8 @@
 
 
 
-function addRole(server) {
-  console.log("AddRole function starting..."+ server)
+function addRole(server,address,blockchain) {
+  console.log("AddRole function starting..."+ server + address + blockchain)
   setTimeout(addRole, 60000*0.5); //Chose the time to repeat in minutes
 }
 

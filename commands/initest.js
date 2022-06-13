@@ -2,6 +2,7 @@
 const DiscordJS = require('discord.js')
 const { Moralis, useMoralisWeb3Api, useMoralis } = require('moralis/node')
 const {setAPIRateLimit} = require('moralis')
+const addRole = require("../addrole")
 
 
 //Specificities of the command
@@ -143,12 +144,17 @@ module.exports = {
               channel.send("You can also tell them to go directly on the NFT Detector dapp: *https://zxhf5v44ppmy.usemoralis.com* ")
               channel.send("> _```Anybody who own an NFT need to connect his wallet to the dapp to be able to be verified. Try to use the command and the dapp yourself!```_")
               channel.send("**_You've finish my initialisation successfuly!  Thank you for using NFT detector!_**   :partying_face:")      
-              return
+
+
+
+              //TESTSSSSSSSSSSSSSSSSSSS
+              addRole(server,address,blockchain);
+              
               })
-            
+              
             
             //Start and use the Moralis function
-            const startingMoralis = iUseMoralis(); 
+            iUseMoralis(); 
             });
         })
     })
