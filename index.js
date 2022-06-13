@@ -3,7 +3,11 @@ const DiscordJS = require('discord.js');
 const WOKCommands = require('wokcommands')
 const path = require('path')
 const keepAlive = require("./server")
+const addRole = require("./addrole")
 const token = process.env['token']
+
+
+//Use Discord.js
 const { Intents } = DiscordJS
 const client = new DiscordJS.Client({
   intents: [
@@ -22,6 +26,11 @@ client.on('ready', () => {
     commandsDir: path.join(__dirname, 'commands'),
     testServers: ['974204394742624316']
   })
+  
+  //TESTSSS
+  //var server = client.guilds.cache.get(serverID);
+  var server = client.guilds.cache.get("GUILD-ID");
+  addRole(server)
 })
 
 
