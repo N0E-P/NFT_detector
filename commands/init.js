@@ -146,7 +146,6 @@ module.exports = {
       let objectOwners = await Moralis.Web3API.token.getNFTOwners(options);
       let stringOwners
       let allOwners = ""
-      console.log("Starting to get all the owners..."); //TO DELETE
       while (objectOwners.next) {
         objectOwners = await objectOwners.next()
         stringOwners = JSON.stringify(objectOwners)
@@ -155,7 +154,6 @@ module.exports = {
 
 
       // Save the data in the Moralis Database
-      console.log("Starting to save in moralis..."); //TO DELETE
       const Address = Moralis.Object.extend("CollectionsAddresses");
       const newAddress = new Address();
       newAddress.set("Address", address);
@@ -163,9 +161,22 @@ module.exports = {
       newAddress.set("Server", server);
       newAddress.set("Data", allOwners);
       await newAddress.save();
+      console.log("All the data has been saved in the Moralis Database.");
 
 
-      //messages
+      //Find if the owner address is a real owner
+      var ownerAddress = "0xA858DDc0445d8131daC4d1DE01f834ffcbA52Ef1" // TO MODIFY
+      var lowerOwnerAddress = ownerAddress.toLowerCase()
+      var lowerAllOwners = allOwners.toLowerCase()
+      var wordFound = lowerAllOwners.indexOf(lowerOwnerAddress);
+      if (wordFound > -1) {
+        console.log("The specific word exists");
+      } else {
+        console.log("The specific word doesn't exists");
+      }
+
+
+      //Ending message
       console.log("addRoles function ended");
     }
 
