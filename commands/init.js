@@ -1,7 +1,6 @@
 // This file is used to run the command !init in discord, and to initialize the bot
 const DiscordJS = require('discord.js')
 const { Moralis, useMoralisWeb3Api, useMoralis } = require('moralis/node')
-const { setAPIRateLimit } = require('moralis')
 
 
 //Specificities of the command
@@ -126,7 +125,7 @@ module.exports = {
 
 
             //Start the repeat function and chose the time to repeat in minutes
-            setInterval(addRoles, 1000 * 60 * 0.5, server, address, blockchain)
+            setInterval(addRoles, 1000 * 60 * 1, server, address, blockchain)
           })
         })
     }
@@ -135,6 +134,35 @@ module.exports = {
     async function addRoles(server, address, blockchain) {
       console.log("addRoles function starting...");
 
+
+      //Start Moralis
+      const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+      const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+      Moralis.start({ serverUrl, appId });
+
+
+      //Get the owners with all the metadata
+      const options = { chain: blockchain, address: address };
+      let objectOwners = await Moralis.Web3API.token.getNFTOwners(options);
+      let stringOwners
+      let allOwners = ""
+      console.log("Starting to get all the owners..."); //TO DELETE
+      while (objectOwners.next) {
+        objectOwners = await objectOwners.next()
+        stringOwners = JSON.stringify(objectOwners)
+        allOwners = allOwners + stringOwners
+      }
+
+
+      // Save the data in the Moralis Database
+      console.log("Starting to save in moralis..."); //TO DELETE
+      const Address = Moralis.Object.extend("CollectionsAddresses");
+      const newAddress = new Address();
+      newAddress.set("Address", address);
+      newAddress.set("Blockchain", blockchain);
+      newAddress.set("Server", server);
+      newAddress.set("Data", allOwners);
+      await newAddress.save();
 
 
       //messages
@@ -145,38 +173,3 @@ module.exports = {
     getCollectionAddress(message, channel); //Start the script
   }
 }
-
-
-/* BONUS NOTES :
-
-
-//Real first moralis script:
-const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
-const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
-Moralis.start({ serverUrl, appId });
-
-
-// Save the data in the Moralis Database
-const Address = Moralis.Object.extend("CollectionsAddresses");
-const newAddress = new Address();
-newAddress.set("Address", address);
-newAddress.set("Blockchain", blockchain);
-newAddress.set("Server", server);
-await newAddress.save();
-
-
-
-
-//Get the owners:
-const options = {chain: blockchain, address: address};
-let objectOwners = await Moralis.Web3API.token.getNFTOwners(options);
-let stringOwners
-let allOwners = ""
-while (objectOwners.next){
-  objectOwners = await objectOwners.next()
-  stringOwners = JSON.stringify(objectOwners)
-  allOwners = allOwners + stringOwners
-}
-
-newAddress.set("Data", allOwners);
-*/
