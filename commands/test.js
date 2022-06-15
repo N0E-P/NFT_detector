@@ -39,10 +39,12 @@ module.exports = {
             var yesOrNo = await isMemberOnDatabase(userName);
 
             if (yesOrNo == "yes") {
-                //findMemberAddress(userName)
-                console.log("The user is on the database");
+                console.log("The user is on the database"); //TO DELETE
+                var userAddress = await Moralis.Cloud.run("getUserAddress");
+                //... function to verify if the address is on the collection
+
             } else {
-                console.log("The user didn't register on the dapp");
+                console.log(userName + "didn't register on the dapp.");
                 return
             }
         }

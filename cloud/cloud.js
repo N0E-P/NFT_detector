@@ -4,3 +4,8 @@ Moralis.Cloud.define("getAllUsers", async (request) => {
     const users = JSON.stringify(result);
     return users;
 });
+
+
+Moralis.Cloud.define("getUserAddress", async (request) => {
+    return
+});
