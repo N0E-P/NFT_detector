@@ -6,15 +6,13 @@ Moralis.start({ serverUrl, appId });
 console.log("test starting... ");
 
 
-//const Address = Moralis.Object.extend("CollectionsAddresses");
 
 async function usequery() {
-    const query = new Moralis.Query("CollectionsAddresses");
-    //query.startsWith("blockchain", "eth");
-    const results = await query.find();
-    console.log("results: " + results);
-    console.log("results.length: " + results.length);
-    return
+    const hello = await Moralis.Cloud.run("hola");
+    console.log(hello);
+
+    const users = await Moralis.Cloud.run("getUsers");
+    console.log(users);
 
 }
 usequery();
@@ -23,6 +21,17 @@ usequery();
 
 
 /*
+const query = new Moralis.Query("CollectionsAddresses");
+    //query.startsWith("blockchain", "eth");
+    const results = await query.find();
+    console.log("results: " + results);
+    console.log("results.length: " + results.length);
+    return
+
+//const Address = Moralis.Object.extend("CollectionsAddresses");
+
+
+
 const users = Moralis.User.extend("_User");
 
 //var discordUsername = "Giraphe#5480"
