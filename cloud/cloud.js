@@ -1,8 +1,3 @@
-Moralis.Cloud.define("hola", async (request) => {
-    return "Hello world!";
-});
-
-
 Moralis.Cloud.define("getAllUsers", async (request) => {
     const query = new Moralis.Query("User");
     const result = await query.find({ useMasterKey: true });

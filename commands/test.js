@@ -10,36 +10,71 @@ module.exports = {
         console.log("test starting... ");
 
 
-        const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
-        const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
-        Moralis.start({ serverUrl, appId });
+        async function addRoles() {
+            const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+            const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+            Moralis.start({ serverUrl, appId });
 
 
-        async function usequery() {
-            const hello = await Moralis.Cloud.run("hola"); //TO DELETE
-            console.log(hello); //TO DELETE
+            //var listOfMembers // à mettre dans findnextmember. // Et a obtenir depuis le serveur.
 
 
+            //TO MODIFY faire tourner en boucle tant autant de fois qu'il y a de nombre de membres 
+            while (0 < 1) {
+                console.log("restart loop");
+                var username = await findNextMember()
+                await checkAMember(username)
+            }
+        }
+
+
+        async function findNextMember() {
+            var username = "Skaskaa" // TO MODIFY
+            console.log("The username is " + username)
+            return username
+        }
+
+
+        async function checkAMember(username) {
+            console.log("Checking the member " + username)
+
+            var yesOrNo = await isMemberOnDatabase(username);
+
+            if (yesOrNo == "yes") {
+                //findMemberAddress(username)
+                console.log("good good good, continue")
+            } else {
+                console.log("bad bad bad, restart")
+                return
+            }
+        }
+
+
+
+
+
+        async function isMemberOnDatabase(username) {
             //Get the list of all the users with their discord names
             var allUsers = await Moralis.Cloud.run("getAllUsers");
             console.log(allUsers);
 
-            //Find if a user is 
-            //Everything is put in lower case in case of a user putting his username without the correct upper or lowercases.
-            //But it can cause problems if 2 users have the same username but with different cases.
-            var username = "Skaskaaa" // TO MODIFY
+
+            //Watch if their is his username writen inside the list with everything
+            //Everything is put in lower case, in case of a user putt his username without the correct upper or lowercases. But it can cause problems if 2 users have the same username but with different cases.
             var lowerUsername = username.toLowerCase()
             var lowerAllUsers = allUsers.toLowerCase()
             var wordFound = lowerAllUsers.indexOf(lowerUsername);
             if (wordFound > -1) {
-                console.log("The specific word exists");
+                console.log("The user is on the database");
+                return "yes"
             } else {
-                console.log("The specific word doesn't exists");
+                console.log("The user didn't register on the database");
+                return
             }
-
-
         }
-        usequery();
+
+
+        addRoles() //start the script
     }
 }
 
