@@ -3,13 +3,14 @@ const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
 const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
 Moralis.start({ serverUrl, appId });
 //////////////////////////////////////////////////////////////////////////////////////////////
+console.log("test starting... ");
 
 
+//const Address = Moralis.Object.extend("CollectionsAddresses");
 
-const Address = Moralis.Object.extend("CollectionsAddresses");
-const query = new Moralis.Query(Address);
-query.startsWith("blockchain", "eth");
 async function usequery() {
+    const query = new Moralis.Query("CollectionsAddresses");
+    //query.startsWith("blockchain", "eth");
     const results = await query.find();
     console.log("results: " + results);
     console.log("results.length: " + results.length);
