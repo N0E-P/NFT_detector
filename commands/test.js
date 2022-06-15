@@ -21,54 +21,48 @@ module.exports = {
 
             //TO MODIFY faire tourner en boucle tant autant de fois qu'il y a de nombre de membres 
             while (0 < 1) {
-                console.log("restart loop");
-                var username = await findNextMember()
-                await checkAMember(username)
+                var userName = await findNextMember()
+                await checkAMember(userName)
             }
         }
 
 
         async function findNextMember() {
-            var username = "Skaskaa" // TO MODIFY
-            console.log("The username is " + username)
-            return username
+            var userName = "Skaskaka" // TO MODIFY
+            return userName
         }
 
 
-        async function checkAMember(username) {
-            console.log("Checking the member " + username)
+        async function checkAMember(userName) {
+            console.log("Checking the member " + userName)
 
-            var yesOrNo = await isMemberOnDatabase(username);
+            var yesOrNo = await isMemberOnDatabase(userName);
 
             if (yesOrNo == "yes") {
-                //findMemberAddress(username)
-                console.log("good good good, continue")
+                //findMemberAddress(userName)
+                console.log("The user is on the database");
             } else {
-                console.log("bad bad bad, restart")
+                console.log("The user didn't register on the dapp");
                 return
             }
         }
 
 
-
-
-
-        async function isMemberOnDatabase(username) {
+        async function isMemberOnDatabase(userName) {
             //Get the list of all the users with their discord names
             var allUsers = await Moralis.Cloud.run("getAllUsers");
-            console.log(allUsers);
+
+
+            //Everything is put in lower case, in case of a user putt his username without the correct upper or lowercases. But it can cause problems if 2 users have the same username but with different cases.
+            var lowerUserName = userName.toLowerCase()
+            var lowerAllUsers = allUsers.toLowerCase()
 
 
             //Watch if their is his username writen inside the list with everything
-            //Everything is put in lower case, in case of a user putt his username without the correct upper or lowercases. But it can cause problems if 2 users have the same username but with different cases.
-            var lowerUsername = username.toLowerCase()
-            var lowerAllUsers = allUsers.toLowerCase()
-            var wordFound = lowerAllUsers.indexOf(lowerUsername);
+            var wordFound = lowerAllUsers.indexOf(lowerUserName);
             if (wordFound > -1) {
-                console.log("The user is on the database");
                 return "yes"
             } else {
-                console.log("The user didn't register on the database");
                 return
             }
         }
