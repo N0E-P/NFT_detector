@@ -22,7 +22,7 @@ module.exports = {
             const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
             Moralis.start({ serverUrl, appId });
 
-
+            /*
             //Get the owners list with all the metadata
             const options = { chain: blockchain, address: address };
             let objectOwners = await Moralis.Web3API.token.getNFTOwners(options);
@@ -32,7 +32,8 @@ module.exports = {
                 allOwners = allOwners + JSON.stringify(objectOwners)
             }
             var lowerAllOwners = allOwners.toLowerCase()
-
+            */
+            var lowerAllOwners = "2A"
 
             //Get the list of all the users with their discord names
             var allUsers = await Moralis.Cloud.run("getAllUsers");
@@ -60,24 +61,23 @@ module.exports = {
 
             var isOnDatabase = await isUserNameOnDatabase(userName, lowerAllUsers);
             if (isOnDatabase == "yes") {
-
-                //var userAddress = await Moralis.Cloud.run("getUserAddress");
-                var userAddress = "0x21a2e1Aa815EC9a088Cc18236631ca1FE7F357e4"//TO DELETE
+                var userAddress = await Moralis.Cloud.run("getUserAddress", userName);
+                console.log("this is the user address :" + userAddress) //TO DELETE
 
                 var isOnCollection = await isUserAddressInCollection(userAddress, lowerAllOwners);
                 if (isOnCollection == "yes") {
                     // TO ADD : add the role to the user (if he don't already get it)
-                    console.log(userName + 'get the "NFT Owner" role');
+                    console.log(userName + ' get the "NFT Owner" role');
                     return
 
                 } else {
-                    console.log(userName + "register on the dapp BUT isn't in the collection.");
+                    console.log(userName + " register on the dapp BUT isn't in the collection.");
                     // TO ADD : enlever le role de l'utilisateur sur discord (si il en a un)
                     return
                 }
 
             } else {
-                console.log(userName + "didn't register on the dapp.");
+                console.log(userName + " didn't register on the dapp.");
                 return
             }
         }
@@ -86,7 +86,8 @@ module.exports = {
         async function findNextMember() {
             // TO CREATE : Faire par numéro, car a chaque fois que l'on utilise cette fonction, c'est pour le membre suivant de la boucle while
             //D'ailleurs, cette fonction peut etre déplacée directement dans la boucle si nécessaire
-            var userName = "Ni4dWCvhIx7LSnlN1M62VhE0sM" // TO MODIFY
+            //var userName = "Ni4dWCvhIx7LSnlN1M62VhE0s" // TO MODIFY
+            var userName = "Skaskaa"
             return userName
         }
 
