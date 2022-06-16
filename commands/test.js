@@ -1,5 +1,5 @@
 const { Moralis } = require('moralis/node')
-//////////////////////////////////////////////////////////////////////////////////////////////
+
 
 module.exports = {
     category: 'NFT Detector commands',
@@ -9,11 +9,12 @@ module.exports = {
     callback: ({ message, channel }) => {
         console.log("test starting... ");
 
-        //FOR TEST ONLY :
+
         //var blockchain = "eth";
         //var address = "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"; // cryptopunks
         var blockchain = "rinkeby";
         var address = "0x7a3a8EAA2650aD46A61486D8581AecB74A453E8E"; // Kevin's holidays
+        ///////////////////////////////////// DELETE EVERYTHING ABOVE ///////////////////////////////////////////////////
 
 
         async function addRoles(blockchain, address) {
@@ -50,8 +51,6 @@ module.exports = {
         }
 
 
-
-
         async function checkAMember(lowerAllOwners, lowerAllUsers) {
             var userName = await findNextMember()
             console.log("Checking the member " + userName)
@@ -84,6 +83,7 @@ module.exports = {
 
             } else {
                 console.log(userName + " didn't register on the dapp.");
+                // TO ADD : enlever le role de l'utilisateur sur discord (si il en a un)
                 return
             }
         }
@@ -128,66 +128,3 @@ module.exports = {
         addRoles(blockchain, address) //start the script
     }
 }
-
-
-
-
-
-
-
-
-
-/*
-const query = new Moralis.Query("CollectionsAddresses");
-    //query.startsWith("blockchain", "eth");
-    const results = await query.find();
-    console.log("results: " + results);
-    console.log("results.length: " + results.length);
-    return
-
-//const Address = Moralis.Object.extend("CollectionsAddresses");
-
-
-
-const users = Moralis.User.extend("_User");
-
-//var discordUsername = "Giraphe#5480"
-
-const query = new Moralis.Query(users);
-//query.startsWith("username", discordUsername);
-query.equalTo("username", "Giraphe#5480");
-
-async function usequery() {
-    const results = await query.find();
-    console.log(results);
-    console.log(results.length);
-}
-usequery();
-
-
-
-
-
-
-// Do something with the returned Moralis.Object values
-for (let i = 0; i < results.length; i++) {
-  const object = results[i];
-  alert(object.id + " - " + object.get("ownerName"));
-}
-
-
-
-
-
-
-const results = await query.find();
-
-console.log("Successfully retrieved " + results.length + " monsters.");
-
-// Do something with the returned Moralis.Object values
-
-for (let i = 0; i < results.length; i++) {
-    const object = results[i];
-    console.log(object.id + " - " + object.get("ownerName"));
-}
-*/
