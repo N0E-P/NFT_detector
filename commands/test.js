@@ -55,7 +55,7 @@ module.exports = {
 
 
         async function getAllOwners(blockchain, address) {
-            const options = { chain: blockchain, address: address };
+            var options = { chain: blockchain, address: address };
             var objectAllOwners = await Moralis.Web3API.token.getNFTOwners(options);
             var stringAllOwners = ""
             while (objectAllOwners.next) {
