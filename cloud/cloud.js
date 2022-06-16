@@ -4,33 +4,29 @@ Moralis.settings.setAPIRateLimit({
 
 
 Moralis.Cloud.define("getAllUsers", async () => {
+    //create the query to get all the users
     var query = new Moralis.Query("User");
     var result = await query.find({ useMasterKey: true });
+
+
+    //transform into string and return the result
     var allUsers = JSON.stringify(result);
     return allUsers;
 });
 
 
-Moralis.Cloud.define("getUserAddress", async (userName) => {
-    //var userNameString = userName.toString();
+Moralis.Cloud.define("getUserAddress", async (request) => {
+    //receive the correct username in the function
+    userName = request.params.userName;
 
 
-    //var userNameString = "Skaskaa"; //Fonctionne, mais c'est pas le but
-    //var userNameString = JSON.stringify(userName); //Donne un fichier JSON lisible dans le terminal
-
-    var userNameString = JSON.parse(userName); //Donne un fichier JSON lisible dans le terminal
-
-    return userNameString
-
-
-    /*
+    //create the query to the database
     var query = new Moralis.Query("User");
-    query.equalTo("username", userNameString);
-    // .startsWith
+    query.equalTo("username", userName);
     var result = await query.find({ useMasterKey: true });
-    var JSONUserAddress = result[0]
-    var userAddress = JSONUserAddress.get("ethAddress");
-    //return userAddress
-    */
 
+
+    //get, and send the user address
+    var userAddress = result[0].get("ethAddress");
+    return userAddress;
 });
