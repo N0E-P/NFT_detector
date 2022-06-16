@@ -7,6 +7,7 @@ module.exports = {
         console.log("testusers starting... ");
 
         ///////////////////////////////////// DELETE EVERYTHING ABOVE ///////////////////////////////////////////////////
+
         // add "client" in the callback params
 
 
@@ -17,20 +18,23 @@ module.exports = {
             var server = message.guild.id;
             const guild = client.guilds.cache.get(server)
             var allMembers = await guild.members.fetch()
-            console.log(allMembers) //TO DELETE
+            //console.log(allMembers) //TO DELETE
 
 
             //get the number of members
             var memberNumber = guild.memberCount
-            console.log('nombre ' + memberNumber) // TO DELETE
 
 
             //loop to verify all the server members
-            var i = 0
-            while (i < memberNumber) {
-                i++;
-                var userName = await findNextMember(allMembers)
-                console.log(i) // TO DELETE
+            var currentNumber = 0
+            while (currentNumber < memberNumber) {
+                currentNumber++;
+
+                var userName = allMembers.get("user");
+                console.log(userName)
+
+                //var userName = await findNextMember(allMembers, currentNumber)
+
                 //console.log("Checking the member " + userName)
                 //await checkAMember(userName)
             }
@@ -38,16 +42,6 @@ module.exports = {
 
             console.log("The roles have been check for every members in the server");
             return
-        }
-
-
-        async function findNextMember(allMembers) {
-            // TO CREATE : Faire par numéro, car a chaque fois que l'on utilise cette fonction, c'est pour le membre suivant de la boucle while
-            //D'ailleurs, cette fonction peut etre déplacée directement dans la boucle si nécessaire
-
-
-            var userName = "";
-            return userName
         }
 
 
