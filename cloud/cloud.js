@@ -9,8 +9,9 @@ Moralis.Cloud.define("getAllUsers", async () => {
     var result = await query.find({ useMasterKey: true });
 
 
-    //transform into string and return the result
-    var allUsers = JSON.stringify(result);
+    //transform into lower case string and return the result
+    var stringAllUsers = JSON.stringify(result);
+    var allUsers = stringAllUsers.toLowerCase()
     return allUsers;
 });
 
