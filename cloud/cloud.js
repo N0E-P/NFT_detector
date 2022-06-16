@@ -13,13 +13,24 @@ Moralis.Cloud.define("getAllUsers", async () => {
 
 Moralis.Cloud.define("getUserAddress", async (userName) => {
     //var userNameString = userName.toString();
-    //var userNameString = "Skaskaa";
-    var userNameString = JSON.stringify(userName);
 
+
+    //var userNameString = "Skaskaa"; //Fonctionne, mais c'est pas le but
+    //var userNameString = JSON.stringify(userName); //Donne un fichier JSON lisible dans le terminal
+
+    var userNameString = JSON.parse(userName); //Donne un fichier JSON lisible dans le terminal
+
+    return userNameString
+
+
+    /*
     var query = new Moralis.Query("User");
-    query.startsWith("username", userNameString);
+    query.equalTo("username", userNameString);
+    // .startsWith
     var result = await query.find({ useMasterKey: true });
     var JSONUserAddress = result[0]
     var userAddress = JSONUserAddress.get("ethAddress");
-    return userAddress
+    //return userAddress
+    */
+
 });
