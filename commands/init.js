@@ -9,7 +9,7 @@ module.exports = {
   description: 'initialise the bot',
   permissions: ['ADMINISTRATOR'],
   guildOnly: true,
-  callback: ({ message, channel }) => {
+  callback: ({ message, channel, client }) => {
     console.log('INIT function starting...')
 
 

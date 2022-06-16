@@ -1,38 +1,30 @@
-module.exports = {
-    category: 'NFT Detector commands',
-    description: 'initialise the bot',
-    permissions: ['ADMINISTRATOR'],
-    guildOnly: true,
-    callback: ({ message, client }) => {
-        console.log("testusers starting... ");
-        /*
-                //var user = allMembers.get("user.username");
-                //var userName = user.get("username");
-                var user = getValues(allMembers, "user")
+/*
+//var user = allMembers.get("user.username");
+//var userName = user.get("username");
+var user = getValues(allMembers, "user")
 
 
-                
+               
+//var userName = await findNextMember(allMembers, currentNumber)
 
-                //var userName = await findNextMember(allMembers, currentNumber)
-
-                //console.log("Checking the member " + userName)
-                //await checkAMember(userName)
+//console.log("Checking the member " + userName)
+//await checkAMember(userName)
 
 
 
-        //return an array of values that match on a certain key
-        function getValues(obj, key) {
-            var objects = [];
-            for (var i in obj) {
-                if (!obj.hasOwnProperty(i)) continue;
-                if (typeof obj[i] == 'object') {
-                    objects = objects.concat(getValues(obj[i], key));
-                } else if (i == key) {
-                    objects.push(obj[i]);
-                }
-            }
-            return objects;
-        }
+//return an array of values that match on a certain key
+function getValues(obj, key) {
+   var objects = [];
+   for (var i in obj) {
+       if (!obj.hasOwnProperty(i)) continue;
+       if (typeof obj[i] == 'object') {
+           objects = objects.concat(getValues(obj[i], key));
+       } else if (i == key) {
+           objects.push(obj[i]);
+       }
+   }
+   return objects;
+}
 
 
 
@@ -42,20 +34,55 @@ module.exports = {
 
 
 
+var results = [];
+var searchVal = "Chaussette";
+for (var i = 0; i < allMembers.length; i++) {
+   if (allMembers[i]["user"]["username"] == searchVal) {
+       results.push(obj.list[i]);
+   }
+}
 
-                var results = [];
-                var searchVal = "Chaussette";
-                for (var i = 0; i < allMembers.length; i++) {
-                    if (allMembers[i]["user"]["username"] == searchVal) {
-                        results.push(obj.list[i]);
-                    }
-                }
 
 
-                */
+//MARCH PA
+function getCountryCode(results, username) {
+   return results.filter(
+       function (results) { return results["user"] }
+   );
+}
+
+
+
+//var allerr = results.user.username
+//var autre = getCountryCode(results, 'NFT detector')
+//var siteuple = results["user"]
+
+
+
+var autre = [];
+var searchVal = "Chaussette";
+for (var i = 0; i < results.length; i++) {
+    if (results[i]["user"]["username"] == searchVal) {
+        autre.push(results[i]);
+    }
+}
+
+
+
+// add "client" in the callback params
+
+
+
+*/
+module.exports = {
+    category: 'NFT Detector commands',
+    description: 'initialise the bot',
+    permissions: ['ADMINISTRATOR'],
+    guildOnly: true,
+    callback: ({ message, client }) => {
+        console.log("testusers starting... ");
+
         ///////////////////////////////////// DELETE EVERYTHING ABOVE ///////////////////////////////////////////////////
-
-        // add "client" in the callback params
 
 
         async function addRoles(client, message) {
@@ -76,12 +103,14 @@ module.exports = {
             var currentNumber = 0
             while (currentNumber < memberNumber) {
                 currentNumber++;
+                //
 
+                var results = getCountryByCode(allMembers, 'NFT detector')
 
-                var results = getCountryByCode(allMembers, 'Chaussette')
+                var userName = results //Use a for loop ? Or find another way 
 
-
-                console.log(results)
+                //
+                console.log(userName)
             }
 
 
@@ -90,6 +119,7 @@ module.exports = {
         }
 
 
+        //Donne toutes les données d'un utilisateur précis quand on le recherche
         function getCountryByCode(allMembers, username) {
             return allMembers.filter(
                 function (allMembers) { return allMembers.user.username == username }
