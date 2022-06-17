@@ -6,24 +6,24 @@
         icon: null,
         features: [],
         commands: [GuildApplicationCommandManager
-        ],  
+    ],  
         members: [GuildMemberManager
-        ],
+    ],
         channels: [GuildChannelManager
-        ],
+    ],
         bans: [GuildBanManager
-        ],
+    ],
         roles: [RoleManager
-        ],
+    ],
         presences: PresenceManager {},
         voiceStates: [VoiceStateManager
-        ],
+    ],
         stageInstances: [StageInstanceManager
-        ],      
+    ],      
         invites: [GuildInviteManager
-        ],
+    ],
         scheduledEvents: [GuildScheduledEventManager
-        ],
+    ],
         available: true,
         shardId: 0,
         splash: null,
@@ -47,7 +47,7 @@
         joinedTimestamp: 1652449793047,
         defaultMessageNotifications: 'ALL_MESSAGES', 
         systemChannelFlags: [SystemChannelFlags
-        ],    
+    ],    
         maximumMembers: 500000,
         maximumPresences: null,
         approximateMemberCount: null,
@@ -58,10 +58,10 @@
         preferredLocale: 'en-US',
         ownerId: '564395821236355072',
         emojis: [GuildEmojiManager
-        ],
+    ],
         stickers: [GuildStickerManager
-        ]
-    },
+    ]
+  },
       joinedTimestamp: 1652338827564,
       premiumSinceTimestamp: null,
       nickname: null,
@@ -73,13 +73,13 @@
         bot: false,
         system: false,
         flags: [UserFlags
-        ],
+    ],
         username: 'Chaussette', /////////////////////////////
         discriminator: '6606',
         avatar: 'b0c701be32c94ce843597f408dd90184',  
         banner: undefined,
         accentColor: undefined
-    },
+  },
       avatar: null
 },
     '691279414796877834' => GuildMember {
@@ -89,24 +89,24 @@
         icon: null,
         features: [],
         commands: [GuildApplicationCommandManager
-        ],  
+    ],  
         members: [GuildMemberManager
-        ],
+    ],
         channels: [GuildChannelManager
-        ],
+    ],
         bans: [GuildBanManager
-        ],
+    ],
         roles: [RoleManager
-        ],
+    ],
         presences: PresenceManager {},
         voiceStates: [VoiceStateManager
-        ],
+    ],
         stageInstances: [StageInstanceManager
-        ],      
+    ],      
         invites: [GuildInviteManager
-        ],
+    ],
         scheduledEvents: [GuildScheduledEventManager
-        ],
+    ],
         available: true,
         shardId: 0,
         splash: null,
@@ -130,7 +130,7 @@
         joinedTimestamp: 1652449793047,
         defaultMessageNotifications: 'ALL_MESSAGES', 
         systemChannelFlags: [SystemChannelFlags
-        ],    
+    ],    
         maximumMembers: 500000,
         maximumPresences: null,
         approximateMemberCount: null,
@@ -141,10 +141,10 @@
         preferredLocale: 'en-US',
         ownerId: '564395821236355072',
         emojis: [GuildEmojiManager
-        ],
+    ],
         stickers: [GuildStickerManager
-        ]
-    },
+    ]
+  },
       joinedTimestamp: 1653466975772,
       premiumSinceTimestamp: null,
       nickname: null,
@@ -156,13 +156,13 @@
         bot: false,
         system: false,
         flags: [UserFlags
-        ],
+    ],
         username: 'Noé Test', //////////////////////////
         discriminator: '8506',
         avatar: null,
         banner: undefined,
         accentColor: undefined
-    },
+  },
       avatar: null
 },
     '974205010504192032' => GuildMember {
@@ -172,24 +172,24 @@
         icon: null,
         features: [],
         commands: [GuildApplicationCommandManager
-        ],  
+    ],  
         members: [GuildMemberManager
-        ],
+    ],
         channels: [GuildChannelManager
-        ],
+    ],
         bans: [GuildBanManager
-        ],
+    ],
         roles: [RoleManager
-        ],
+    ],
         presences: PresenceManager {},
         voiceStates: [VoiceStateManager
-        ],
+    ],
         stageInstances: [StageInstanceManager
-        ],      
+    ],      
         invites: [GuildInviteManager
-        ],
+    ],
         scheduledEvents: [GuildScheduledEventManager
-        ],
+    ],
         available: true,
         shardId: 0,
         splash: null,
@@ -213,7 +213,7 @@
         joinedTimestamp: 1652449793047,
         defaultMessageNotifications: 'ALL_MESSAGES', 
         systemChannelFlags: [SystemChannelFlags
-        ],    
+    ],    
         maximumMembers: 500000,
         maximumPresences: null,
         approximateMemberCount: null,
@@ -224,23 +224,23 @@
         preferredLocale: 'en-US',
         ownerId: '564395821236355072',
         emojis: [GuildEmojiManager
-        ],
+    ],
         stickers: [GuildStickerManager
-        ]
-    },
+    ]
+  },
       joinedTimestamp: 1652449793047,
       premiumSinceTimestamp: null,
       nickname: null,
       pending: false,
       communicationDisabledUntilTimestamp: null,     
       _roles: [ '974669817619554387'
-    ],
+  ],
       user: ClientUser {
         id: '974205010504192032',
         bot: true,
         system: false,
         flags: [UserFlags
-        ],
+    ],
         username: 'NFT detector', //////////////////////////
         discriminator: '4802',
         avatar: 'fa05b7dc7f3b7d81e4a7856d88b52e9a',
@@ -248,7 +248,7 @@
         accentColor: undefined,
         verified: true,
         mfaEnabled: false
-    },
+  },
       avatar: null
 }
 }

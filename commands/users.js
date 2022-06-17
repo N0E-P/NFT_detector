@@ -72,6 +72,12 @@ for (var i = 0; i < results.length; i++) {
 // add "client" in the callback params
 
 
+        function testest(guild) {
+            return guild.members.filter(
+                function (guild) { return member => member.presence.status === "offline" }
+            );
+        }
+
 
 */
 module.exports = {
@@ -89,29 +95,39 @@ module.exports = {
 
 
             //get server members
-            var server = message.guild.id;
-            const guild = client.guilds.cache.get(server)
-            var allMembers = await guild.members.fetch()
-            //console.log(allMembers) //TO DELETE
-
+            const server = message.guild.id;
+            const data = client.guilds.cache.get(server)
+            const membersData = await data.members.fetch()
 
             //get the number of members
-            var memberNumber = guild.memberCount
+            const memberNumber = data.memberCount
 
+            //
 
+            const member = await findAMemberData(membersData, 'NFT detector')
+            console.log(member)
+            const test = member.GuildMember.name
+
+            console.log(test) //TO DELETE
+
+            //
+            /*
             //loop to verify all the server members
             var currentNumber = 0
             while (currentNumber < memberNumber) {
                 currentNumber++;
                 //
 
-                var results = getCountryByCode(allMembers, 'NFT detector')
+
+                var results = getCountryByCode(membersData, 'NFT detector')
 
                 var userName = results //Use a for loop ? Or find another way 
 
+
                 //
-                console.log(userName)
+                //console.log(userName)
             }
+            */
 
 
             console.log("The roles have been check for every members in the server");
@@ -120,12 +136,11 @@ module.exports = {
 
 
         //Donne toutes les données d'un utilisateur précis quand on le recherche
-        function getCountryByCode(allMembers, username) {
+        function findAMemberData(allMembers, username) {
             return allMembers.filter(
                 function (allMembers) { return allMembers.user.username == username }
             );
         }
-
 
         addRoles(client, message) //start the script
     }

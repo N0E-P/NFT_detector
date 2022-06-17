@@ -6,11 +6,10 @@ module.exports = {
     description: 'initialise the bot',
     permissions: ['ADMINISTRATOR'],
     guildOnly: true,
-    callback: ({ message, channel, client }) => {
+    callback: ({ message, client }) => {
         console.log("test starting... ");
 
 
-        //var server = message.guild.id;
         //var blockchain = "eth";
         //var address = "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"; // cryptopunks
         var blockchain = "rinkeby";
@@ -19,26 +18,34 @@ module.exports = {
 
 
 
-        async function addRoles(blockchain, address) {
+        async function addRoles(blockchain, address, client, message) {
             //Start Moralis
             const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
             const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
             Moralis.start({ serverUrl, appId });
 
 
+            //get server members
+            const server = message.guild.id;
+            const data = client.guilds.cache.get(server)
+
+
+            //get the number of members
+            const memberNumber = data.memberCount
+
+
             //Get the owners list with all the metadata
-            var allOwners = await getAllOwners(blockchain, address);
+            const allOwners = await getAllOwners(blockchain, address);
 
 
             //Get the list of all the users of the dapp
-            var allUsers = await Moralis.Cloud.run("getAllUsers");
+            const allUsers = await Moralis.Cloud.run("getAllUsers");
 
 
-            //var listOfMembers // à mettre dans findnextmember. // Et a obtenir depuis le serveur.
-
-
-            //TO MODIFY faire tourner en boucle tant autant de fois qu'il y a de nombre de membres 
-            while (0 < 1) {
+            //loop to verify all the server members
+            var currentNumber = 0
+            while (currentNumber < memberNumber) {
+                currentNumber++;
                 var userName = await findNextMember()
                 console.log("Checking the member " + userName)
                 await checkAMember(allOwners, allUsers, userName)
@@ -136,6 +143,6 @@ module.exports = {
         }
 
 
-        addRoles(blockchain, address) //start the script
+        addRoles(blockchain, address, client, message) //start the script
     }
 }
