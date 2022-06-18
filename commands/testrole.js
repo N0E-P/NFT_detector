@@ -2,54 +2,46 @@
 
 module.exports = {
     category: 'NFT Detector commands',
-    description: 'initialise the bot',
+    description: 'testestest',
     callback: ({ message }) => {
+        console.log("testrole starting...")
 
 
-
-
-
-
-        //Besoin d'y accéder je sais pas comment : ///////////////////////////
+        //Besoin d'y accéder je sais pas comment : 
         const userId = "564395821236355072"
 
 
-
-
-
-
-        //Code qui marche : ///////////////////////////
-
-
-        //Avoir les bonnes variables :
-        const roleName = "NFT Owner"
+        //Avoir accès à toutes les données :
         const { guild } = message
-        //console.log(guild)
+
+
+        //Pas utile ici, mais utile plus tard
+        const memberNumber = guild.memberCount
+        console.log(memberNumber)
 
 
         //find the role ID
         const role = guild.roles.cache.find((role) => {
-            return role.name === roleName
+            return role.name === "NFT Owner"
         })
         if (!role) {
-            console.log('There is no role with this name')
+            console.log('ERROR: There is no NFT Owner role on this server')
             return
         }
-        //console.log("the role ID is: " + role) // TO DELETE
 
 
         //avoir toutes les infos d'un utilisateur a partir de son user ID
         const member = guild.members.cache.get(userId)
-        //console.log(member)
 
 
-
-        /* ADD A ROLE (si possede déjà le role, c'est X grave)
+        /* 
+        //ADD A ROLE (si possede déjà le role, c'est X grave)
         member.roles.add(role)
-        message.reply(`Chaussette have now the "${roleName}" role`)
+        message.reply("That user have now the role")
         */
 
 
+        /*
         //REMOVE A ROLE
         if (member.roles.cache.get(role.id)) {
             member.roles.remove(role)
@@ -57,7 +49,7 @@ module.exports = {
         } else {
             console.log('That user does not have the role')
         }
-
+        */
 
     }
 }
