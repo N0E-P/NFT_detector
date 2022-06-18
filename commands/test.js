@@ -1,12 +1,8 @@
 const { Moralis } = require('moralis/node')
-
-
 module.exports = {
     category: 'NFT Detector commands',
     description: 'initialise the bot',
-    permissions: ['ADMINISTRATOR'],
-    guildOnly: true,
-    callback: ({ message, client }) => {
+    callback: ({ message }) => {
         console.log("test starting... ");
 
 
@@ -18,20 +14,31 @@ module.exports = {
 
 
 
-        async function addRoles(blockchain, address, client, message) {
+        async function addRoles(blockchain, address, message) {
             //Start Moralis
             const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
             const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
             Moralis.start({ serverUrl, appId });
 
 
-            //get server members
-            const server = message.guild.id;
-            const data = client.guilds.cache.get(server)
+            //Get all server data
+            const { guild } = message
 
 
-            //get the number of members
-            const memberNumber = data.memberCount
+            //Get the number of members
+            const memberNumber = guild.memberCount
+
+
+            //Get the role ID
+            const role = guild.roles.cache.find((role) => {
+                return role.name === "NFT Owner"
+            })
+
+
+            //Verify if the server has a role named NFT Owner
+            if (!role) {
+                return console.log('ERROR: There is no NFT Owner role on this server')
+            }
 
 
             //Get the owners list with all the metadata
@@ -46,13 +53,30 @@ module.exports = {
             var currentNumber = 0
             while (currentNumber < memberNumber) {
                 currentNumber++;
-                var userName = await findNextMember()
-                console.log("Checking the member " + userName)
-                await checkAMember(allOwners, allUsers, userName)
+
+
+                // Avoir chaques member ID un par un                    /////////////////////////
+                var memberId = "564395821236355072" // CHAUSSETTE ID
+
+
+                //Get all the infos of the user just using his member ID
+                var memberInfos = guild.members.cache.get(memberId)
+
+
+                //chopper le membername entier a partir du memberinfos  /////////////////////////
+                var memberName = "Ni4dWCvhIx7LSnlN1M62VhE0s"  // GET ROLE
+                //var memberName = "Skaskaa"                    // IS ON DATABASE BUT ISN'T AN OWNER
+
+                //var memberName = 
+
+                //est ce qu'un membre possède le role ?
+                //memberInfos.roles.cache.get(role.id)
+
+
+
+                console.log("Checking the member " + memberName)
+                await checkAMember(allOwners, allUsers, role, memberName, memberInfos)
             }
-
-
-            //Save all the data ?
 
 
             //End of the script
@@ -74,55 +98,56 @@ module.exports = {
         }
 
 
-        async function findNextMember() {
-            // TO CREATE : Faire par numéro, car a chaque fois que l'on utilise cette fonction, c'est pour le membre suivant de la boucle while
-            //D'ailleurs, cette fonction peut etre déplacée directement dans la boucle si nécessaire
-
-
-            var userName = "Ni4dWCvhIx7LSnlN1M62VhE0s" // TO MODIFY
-            //var userName = "Skaskaa"
-            return userName
-        }
-
-
-        async function checkAMember(allOwners, allUsers, userName) {
+        async function checkAMember(allOwners, allUsers, role, memberName, memberInfos) {
             // Check if the discord member has register on the database
-            var isOnDatabase = await isUserNameOnDatabase(userName, allUsers);
+            var isOnDatabase = await isMemberNameOnDatabase(memberName, allUsers);
+
+
             if (isOnDatabase == "yes") {
+                //The member register on the dapp.
 
 
                 //Get the address of the user
-                var userAddress = await Moralis.Cloud.run("getUserAddress", params = { userName });
+                var userAddress = await Moralis.Cloud.run("getUserAddress", params = { memberName });
 
 
                 //Check if the user is an owner of the NFT
                 var isOnCollection = await isUserAddressInCollection(userAddress, allOwners);
+
+
                 if (isOnCollection == "yes") {
-                    // TO ADD : add the role to the user (if he don't already get it)
-                    console.log(userName + ' get the "NFT Owner" role');
+                    //The member register on the dapp and is an NFT owner. So he get the role
+                    memberInfos.roles.add(role)
+                    console.log(memberName + ' is an NFT Owner!');
                     return
 
 
                 } else {
-                    console.log(userName + " register on the dapp BUT isn't in the collection.");
-                    // TO ADD : enlever le role de l'utilisateur sur discord (si il en a un)
+                    //The member register on the dapp BUT isn't in the collection. So we remove the role if he have it
+                    if (memberInfos.roles.cache.get(role.id)) {
+                        memberInfos.roles.remove(role)
+                    }
+                    console.log(memberName + " register on the dapp BUT isn't in the collection.");
                     return
                 }
 
 
             } else {
-                console.log(userName + " didn't register on the dapp.");
-                // TO ADD : enlever le role de l'utilisateur sur discord (si il en a un)
+                //The member didn't register on the app. So we remove the role if he have it
+                if (memberInfos.roles.cache.get(role.id)) {
+                    memberInfos.roles.remove(role)
+                }
+                console.log(memberName + " didn't register on the dapp.");
                 return
             }
         }
 
 
-        async function isUserNameOnDatabase(userName, allUsers) {
+        async function isMemberNameOnDatabase(memberName, allUsers) {
             //Search for the userName in the the list of all the users
             //WARNING : Everything is put in lower case, in case of a user putt his username without the correct upper or lowercases. But it can cause problems if 2 users have the same username but with different cases.
-            var lowerUserName = userName.toLowerCase()
-            var wordFound = allUsers.indexOf(lowerUserName);
+            var lowerMemberName = memberName.toLowerCase()
+            var wordFound = allUsers.indexOf(lowerMemberName);
             if (wordFound > -1) {
                 return "yes"
             } else {
@@ -143,6 +168,6 @@ module.exports = {
         }
 
 
-        addRoles(blockchain, address, client, message) //start the script
+        addRoles(blockchain, address, message) //start the script
     }
 }

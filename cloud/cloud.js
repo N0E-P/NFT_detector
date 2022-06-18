@@ -18,7 +18,7 @@ Moralis.Cloud.define("getAllUsers", async () => {
 
 Moralis.Cloud.define("getUserAddress", async (request) => {
     //receive the correct username in the function
-    userName = request.params.userName;
+    userName = request.params.memberName;
 
 
     //create the query to the database
