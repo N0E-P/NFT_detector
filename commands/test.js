@@ -38,16 +38,17 @@ module.exports = {
             const allUsers = await Moralis.Cloud.run("getAllUsers");
 
 
+            //Get the list of all the members IDs
+            const allMembersData = await guild.members.fetch()
+            const allMembersID = allMembersData.map(member => member.id);
+
+
             //loop to verify all the server members
-            for (var currentNumber = 0; currentNumber < guild.memberCount; currentNumber++) {
+            for (var currentMemberNumber = 0; currentMemberNumber < guild.memberCount; currentMemberNumber++) {
 
 
-                // Get each member ID one after the other           /////////////////////////////////
-                var memberId = "564395821236355072" // CHAUSSETTE ID
-
-
-                //Get all the infos of the user just using his member ID
-                var memberInfos = guild.members.cache.get(memberId)
+                //Get all the infos of the current member
+                var memberInfos = guild.members.cache.get(allMembersID[currentMemberNumber])
 
 
                 //Check this member
