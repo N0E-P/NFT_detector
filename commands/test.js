@@ -39,12 +39,10 @@ module.exports = {
 
 
             //loop to verify all the server members
-            var currentNumber = 0
-            while (currentNumber < guild.memberCount) {
-                currentNumber++;
+            for (var currentNumber = 0; currentNumber < guild.memberCount; currentNumber++) {
 
 
-                // Avoir chaques member ID un par un                    /////////////////////////
+                // Get each member ID one after the other           /////////////////////////////////
                 var memberId = "564395821236355072" // CHAUSSETTE ID
 
 
