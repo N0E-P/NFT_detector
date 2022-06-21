@@ -64,7 +64,7 @@ module.exports = {
 
 
           //Make sure that the bot only take the answer from the admin
-          const filter = (user) => {
+          const filter = (reaction, user) => {
             return user.id === message.author.id;
           };
 
