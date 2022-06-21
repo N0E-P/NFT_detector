@@ -25,20 +25,9 @@ module.exports = {
             const { guild } = message
 
 
-            //Get the number of members
-            const memberNumber = guild.memberCount
-
-
-            //Get the role ID
-            const role = guild.roles.cache.find((role) => {
-                return role.name === "NFT Owner"
-            })
-
-
-            //Verify if the server has a role named NFT Owner
-            if (!role) {
-                return console.log('ERROR: There is no NFT Owner role on this server')
-            }
+            //Get the role ID and verify if the server has a role named NFT Owner
+            const role = guild.roles.cache.find((role) => { return role.name === "NFT Owner" })
+            if (!role) { return console.log('ERROR: There is no NFT Owner role on this server') }
 
 
             //Get the owners list with all the metadata
@@ -51,7 +40,7 @@ module.exports = {
 
             //loop to verify all the server members
             var currentNumber = 0
-            while (currentNumber < memberNumber) {
+            while (currentNumber < guild.memberCount) {
                 currentNumber++;
 
 
@@ -63,19 +52,8 @@ module.exports = {
                 var memberInfos = guild.members.cache.get(memberId)
 
 
-                //chopper le membername entier a partir du memberinfos  /////////////////////////
-                var memberName = "Ni4dWCvhIx7LSnlN1M62VhE0s"  // GET ROLE
-                //var memberName = "Skaskaa"                    // IS ON DATABASE BUT ISN'T AN OWNER
-
-                //var memberName = 
-
-                //est ce qu'un membre possède le role ?
-                //memberInfos.roles.cache.get(role.id)
-
-
-
-                console.log("Checking the member " + memberName)
-                await checkAMember(allOwners, allUsers, role, memberName, memberInfos)
+                //Check this member
+                await checkAMember(allOwners, allUsers, role, memberInfos)
             }
 
 
@@ -98,9 +76,17 @@ module.exports = {
         }
 
 
-        async function checkAMember(allOwners, allUsers, role, memberName, memberInfos) {
+        async function checkAMember(allOwners, allUsers, role, memberInfos) {
+            //Get the full memberName from memberinfos
+            const memberName = (memberInfos.user.username + "#" + memberInfos.user.discriminator)
+
+
+            //console message
+            console.log("Checking the member " + memberName)
+
+
             // Check if the discord member has register on the database
-            var isOnDatabase = await isMemberNameOnDatabase(memberName, allUsers);
+            const isOnDatabase = await isMemberNameOnDatabase(memberName, allUsers);
 
 
             if (isOnDatabase == "yes") {
@@ -108,11 +94,11 @@ module.exports = {
 
 
                 //Get the address of the user
-                var userAddress = await Moralis.Cloud.run("getUserAddress", params = { memberName });
+                const userAddress = await Moralis.Cloud.run("getUserAddress", params = { memberName });
 
 
                 //Check if the user is an owner of the NFT
-                var isOnCollection = await isUserAddressInCollection(userAddress, allOwners);
+                const isOnCollection = await isUserAddressInCollection(userAddress, allOwners);
 
 
                 if (isOnCollection == "yes") {
@@ -146,8 +132,8 @@ module.exports = {
         async function isMemberNameOnDatabase(memberName, allUsers) {
             //Search for the userName in the the list of all the users
             //WARNING : Everything is put in lower case, in case of a user putt his username without the correct upper or lowercases. But it can cause problems if 2 users have the same username but with different cases.
-            var lowerMemberName = memberName.toLowerCase()
-            var wordFound = allUsers.indexOf(lowerMemberName);
+            const lowerMemberName = memberName.toLowerCase()
+            const wordFound = allUsers.indexOf(lowerMemberName);
             if (wordFound > -1) {
                 return "yes"
             } else {
@@ -158,8 +144,8 @@ module.exports = {
 
         async function isUserAddressInCollection(userAddress, allOwners) {
             //Check if the user is in the metadata of the NFT collection by looking for his address
-            var lowerUserAddress = userAddress.toLowerCase()
-            var wordFound = allOwners.indexOf(lowerUserAddress);
+            const lowerUserAddress = userAddress.toLowerCase()
+            const wordFound = allOwners.indexOf(lowerUserAddress);
             if (wordFound > -1) {
                 return "yes"
             } else {
