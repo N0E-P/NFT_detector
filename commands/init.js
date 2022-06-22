@@ -9,8 +9,6 @@ module.exports = {
   permissions: ['ADMINISTRATOR'],
   guildOnly: true,
   callback: ({ message, channel }) => {
-
-    //Start the script
     getAddress(message, channel);
 
 
@@ -131,35 +129,14 @@ module.exports = {
       Moralis.start({ serverUrl, appId });
 
 
-      //Look if this server has already been initialised
-      var query = new Moralis.Query("CollectionsAddresses");
-      query.equalTo("Server", server);
-      const result = await query.find();
-      if (JSON.stringify(result) == "[]") {
-
-
-        // Save the data in the Moralis Database
-        const Address = Moralis.Object.extend("CollectionsAddresses");
-        const newAddress = new Address();
-        newAddress.set("Address", address);
-        newAddress.set("Blockchain", blockchain);
-        newAddress.set("Server", server);
-        newAddress.set("ServerName", serverName);
-        await newAddress.save();
-        console.log('Init data has been created for the server ' + serverName)
-
-
-        //Modify the data in the Moralis Database
-      } else {
-        result.set("Blockchain", blockchain);
-        result.save();
-
-        //PRendre ce qu'il faut de la query pour pouvoir modifier la data ensuite (surement l'objectID)
-        //ou juste valider si la data de ce serveur existe déjà ou non
-        //var userAddress = result[0].get("ethAddress");
-
-        console.log('Init data has been modified for the server ' + serverName)
-      }
+      // Save the data in the Moralis Database
+      const Address = Moralis.Object.extend("CollectionsAddresses");
+      const newAddress = new Address();
+      newAddress.set("Address", address);
+      newAddress.set("Blockchain", blockchain);
+      newAddress.set("Server", server);
+      newAddress.set("ServerName", serverName);
+      await newAddress.save();
 
 
       //Messages for the user
@@ -169,7 +146,8 @@ module.exports = {
       channel.send("**_You've finish my initialisation successfuly!  Thank you for using NFT detector!_**   :partying_face:")
 
 
-      return
+      //console message
+      return console.log('Init data has been saved for the server ' + serverName)
     }
   }
 }
