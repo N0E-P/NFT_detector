@@ -135,7 +135,6 @@ module.exports = {
       var query = new Moralis.Query("CollectionsAddresses");
       query.equalTo("Server", server);
       const result = await query.find();
-      var createdOrModified
       if (JSON.stringify(result) == "[]") {
 
 
@@ -147,19 +146,19 @@ module.exports = {
         newAddress.set("Server", server);
         newAddress.set("ServerName", serverName);
         await newAddress.save();
-        createdOrModified = "created"
+        console.log('Init data has been created for the server ' + serverName)
 
 
         //Modify the data in the Moralis Database
       } else {
-
+        result.set("Blockchain", blockchain);
+        result.save();
 
         //PRendre ce qu'il faut de la query pour pouvoir modifier la data ensuite (surement l'objectID)
         //ou juste valider si la data de ce serveur existe déjà ou non
         //var userAddress = result[0].get("ethAddress");
 
-        createdOrModified = "modified"
-
+        console.log('Init data has been modified for the server ' + serverName)
       }
 
 
@@ -170,8 +169,6 @@ module.exports = {
       channel.send("**_You've finish my initialisation successfuly!  Thank you for using NFT detector!_**   :partying_face:")
 
 
-      //Console message
-      console.log('Init data has been ' + createdOrModified + ' for the server ' + serverName)
       return
     }
   }
