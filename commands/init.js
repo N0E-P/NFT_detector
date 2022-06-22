@@ -181,7 +181,7 @@ module.exports = {
 
 
     async function getAllOwners(blockchain, address) {
-      var options = { chain: blockchain, address: address };
+      const options = { chain: blockchain, address: address };
       var objectAllOwners = await Moralis.Web3API.token.getNFTOwners(options);
       var stringAllOwners = ""
       while (objectAllOwners.next) {
@@ -199,7 +199,7 @@ module.exports = {
 
 
       // Check if the discord member has register on the database
-      const isOnDatabase = await isMemberNameOnDatabase(memberName, allUsers);
+      const isOnDatabase = isMemberNameOnDatabase(memberName, allUsers);
 
 
       if (isOnDatabase == "yes") {
@@ -211,7 +211,7 @@ module.exports = {
 
 
         //Check if the user is an owner of the NFT
-        const isOnCollection = await isUserAddressInCollection(userAddress, allOwners);
+        const isOnCollection = isUserAddressInCollection(userAddress, allOwners);
 
 
         if (isOnCollection == "yes") {
@@ -242,7 +242,7 @@ module.exports = {
     }
 
 
-    async function isMemberNameOnDatabase(memberName, allUsers) {
+    function isMemberNameOnDatabase(memberName, allUsers) {
       //Search for the userName in the the list of all the users
       //WARNING : Everything is put in lower case, in case of a user putt his username without the correct upper or lowercases. But it can cause problems if 2 users have the same username but with different cases.
       const lowerMemberName = memberName.toLowerCase()
@@ -255,7 +255,7 @@ module.exports = {
     }
 
 
-    async function isUserAddressInCollection(userAddress, allOwners) {
+    function isUserAddressInCollection(userAddress, allOwners) {
       //Check if the user is in the metadata of the NFT collection by looking for his address
       const lowerUserAddress = userAddress.toLowerCase()
       const wordFound = allOwners.indexOf(lowerUserAddress);
