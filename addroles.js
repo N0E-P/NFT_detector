@@ -1,18 +1,38 @@
+//Start Moralis
+const { Moralis } = require('moralis/node')
+const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+Moralis.start({ serverUrl, appId });
+
+
+//Get the server OR guild infos OR any message from a guild
+
+
+//Check if the admins enter the NFT collections infos with the !init command
+var query = new Moralis.Query("CollectionsAddresses");
+query.equalTo("Server", server);
+const result = await query.find();
+while (JSON.stringify(result) !== "[]") {
+
+
+    //Get the NFT collection infos
+    var blockchain = result[0].get("Blockchain");
+    var address = result[0].get("Address");
+
+
+    //Repeat the addrole function every 60 minutes
+    setInterval(addRoles, 60000 * 60, blockchain, address, message)
+}
+
 
 async function addRoles(blockchain, address, message) {
-    //Start Moralis
-    const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
-    const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
-    Moralis.start({ serverUrl, appId });
-
-
     //Get all server data
     const { guild } = message
 
 
     //Get the role ID and verify if the server has a role named NFT Owner
     const role = guild.roles.cache.find((role) => { return role.name === "NFT Owner" })
-    if (!role) { return console.log('ERROR: There is no NFT Owner role on this server') }
+    if (!role) { return console.log('ERROR: There is no NFT Owner role on the server' + message.guild.name) }
 
 
     //Get the owners list with all the metadata
