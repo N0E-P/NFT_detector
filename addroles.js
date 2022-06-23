@@ -1,48 +1,37 @@
 const { Moralis } = require('moralis/node')
 
+
 async function test(message) {
-    //loop to restart the test every 5 min
-    while (0 < 1) {
 
 
-        console.log("starting while loooooop") // TO DELETE
+    console.log("starting tesssststststss") // TO DELETE
 
 
-        //Start Moralis
-        const { Moralis } = require('moralis/node')
-        const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
-        const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
-        Moralis.start({ serverUrl, appId });
+    //Start Moralis
+    const { Moralis } = require('moralis/node')
+    const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+    const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+    Moralis.start({ serverUrl, appId });
 
 
-        //Check if the admins enter the NFT collections infos with the !init command
-        var query = new Moralis.Query("CollectionsAddresses");
-        query.equalTo("Server", message.guild.id);
-        const result = await query.find();
-        if (JSON.stringify(result) !== "[]") {
+    //Check if the admins enter the NFT collections infos with the !init command
+    var query = new Moralis.Query("CollectionsAddresses");
+    query.equalTo("Server", message.guild.id);
+    const result = await query.find();
+    if (JSON.stringify(result) !== "[]") {
 
 
-            //Get the NFT collection infos
-            var blockchain = result[0].get("Blockchain");
-            var address = result[0].get("Address");
+        //Get the NFT collection infos
+        var blockchain = result[0].get("Blockchain");
+        var address = result[0].get("Address");
 
 
-            console.log("starting set intervaaaallll") // TO DELETE
+        console.log("starting addroles") // TO DELETE
 
 
-            //Repeat the addrole function every 60 minutes
-            setInterval(addRoles, 60000 * 60, blockchain, address, message)
-        }
-
-
-        //wait 5 minutes before restarting the test function
-        setTimeout(useless, 1000 * 60 * 5);
-        function useless() {
-            return
-        }
+        await addRoles(blockchain, address, message)
     }
 }
-
 
 
 async function addRoles(blockchain, address, message) {

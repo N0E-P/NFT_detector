@@ -46,9 +46,7 @@ client.on("messageCreate", message => {
   if (message.content.includes("")) {
 
 
-    //check if the addroles loop is on or not
-
-    console.log("NEW MESSAGEGGEGEGE with           : " + message)
+    console.log("NEW MESSAGEGGEGEGE")
     test(message)
   }
 })
