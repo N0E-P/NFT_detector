@@ -37,6 +37,10 @@ client.on('ready', () => {
 })
 
 
+//
+
+
+
 //Check if someone sends any message
 client.on("messageCreate", message => {
   if (message.content.includes("")) {
@@ -48,6 +52,10 @@ client.on("messageCreate", message => {
     test(message)
   }
 })
+
+
+
+//
 
 
 //Let the bot online and access it using the discord token.
