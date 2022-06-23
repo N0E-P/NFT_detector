@@ -1,28 +1,48 @@
-//Start Moralis
 const { Moralis } = require('moralis/node')
-const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
-const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
-Moralis.start({ serverUrl, appId });
+
+async function test(message) {
+    //loop to restart the test every 5 min
+    while (0 < 1) {
 
 
-//Get the server OR guild infos OR any message from a guild
+        console.log("starting while loooooop") // TO DELETE
 
 
-//Check if the admins enter the NFT collections infos with the !init command
-var query = new Moralis.Query("CollectionsAddresses");
-query.equalTo("Server", server);
-const result = await query.find();
-while (JSON.stringify(result) !== "[]") {
+        //Start Moralis
+        const { Moralis } = require('moralis/node')
+        const serverUrl = "https://zxhf5v44ppmy.usemoralis.com:2053/server";
+        const appId = "FhT4qqcXkx6s4d6fBGWoLyEi10twqx3uarr8eLEP";
+        Moralis.start({ serverUrl, appId });
 
 
-    //Get the NFT collection infos
-    var blockchain = result[0].get("Blockchain");
-    var address = result[0].get("Address");
+        //Check if the admins enter the NFT collections infos with the !init command
+        var query = new Moralis.Query("CollectionsAddresses");
+        query.equalTo("Server", message.guild.id);
+        const result = await query.find();
+        if (JSON.stringify(result) !== "[]") {
 
 
-    //Repeat the addrole function every 60 minutes
-    setInterval(addRoles, 60000 * 60, blockchain, address, message)
+            //Get the NFT collection infos
+            var blockchain = result[0].get("Blockchain");
+            var address = result[0].get("Address");
+
+
+            console.log("starting set intervaaaallll") // TO DELETE
+
+
+            //Repeat the addrole function every 60 minutes
+            setInterval(addRoles, 60000 * 60, blockchain, address, message)
+        }
+
+
+        //wait 5 minutes before restarting the test function
+        setTimeout(useless, 1000 * 60 * 5);
+        function useless() {
+            return
+        }
+    }
 }
+
 
 
 async function addRoles(blockchain, address, message) {
@@ -152,3 +172,6 @@ function isUserAddressInCollection(userAddress, allOwners) {
         return
     }
 }
+
+
+module.exports = test

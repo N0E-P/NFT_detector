@@ -3,6 +3,8 @@ const DiscordJS = require('discord.js');
 const WOKCommands = require('wokcommands')
 const path = require('path')
 const keepAlive = require("./server")
+const test = require("./addroles")
+
 
 //With replit.com, you have to use the following code to get the token:
 //const token = process.env['token'] 
@@ -32,6 +34,19 @@ client.on('ready', () => {
     commandsDir: path.join(__dirname, 'commands'),
     testServers: ['974204394742624316']
   })
+})
+
+
+//Check if someone sends any message
+client.on("messageCreate", message => {
+  if (message.content.includes("")) {
+
+
+    //check if the addroles loop is on or not
+
+    console.log("NEW MESSAGEGGEGEGE with           : " + message)
+    test(message)
+  }
 })
 
 
