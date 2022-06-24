@@ -34,6 +34,8 @@ client.on('ready', () => {
     commandsDir: path.join(__dirname, 'commands'),
     testServers: ['974204394742624316']
   })
+
+  loop()
 })
 
 
@@ -46,10 +48,25 @@ client.on("messageCreate", message => {
   if (message.content.includes("")) {
 
 
+
+
+
+
     console.log("NEW MESSAGEGGEGEGE")
-    test(message)
+
   }
 })
+
+
+
+async function loop() {
+
+}
+
+for (/*Tester chaque serveurs en prennant leur message associés*/) {
+
+  test(message)
+}
 
 
 
