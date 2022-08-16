@@ -5,5 +5,3 @@
 .env.production.local
 
 node_modules
-
-./NFT_detector_dapp/node_modules
