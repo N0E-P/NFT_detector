@@ -1,11 +1,11 @@
-<h1>Here is the link of the dapp repository: </h1> https://github.com/N0E-P/NFT_detector_dapp
+<h1>Here is the dapp repository link: </h1> https://github.com/N0E-P/NFT_detector_dapp
 
 <h1>How to use The NFT Detector:</h1>
 1. Add the NFT Detector Bot to your discord server with this link:
 
 _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissions=8&scope=bot%20applications.commands_
 
-2. Write `!NFT` on any channel.
+2. Write `!init` on any channel.
 
    > You need to be an administrator to use it.
 
@@ -21,9 +21,9 @@ _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissio
 
    But if you receive an error message, or nothing after 5 minutes:
 
-   > It means that the initialisation failed. Verify your NFT address and restart the `!NFT` command.
+   > It means that the initialisation failed. Verify your NFT address and restart the `!init` command.
 
-6. Share this link with the members of your server: _https://zxhf5v44ppmy.usemoralis.com/_
+6. Share the link of the dapp with the members of your server
    > _By connecting their metamask to the NFT Detector Dapp, the bot will be able to verify if they got some NFTs from your collection or not. And by the same time, it will link their wallet to their discord username._
    >
    > _This service is free. There is absolutely NO payement or transaction to do on the Dapp._
@@ -33,27 +33,22 @@ _https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissio
 
 <h1>How to start the bot:</h1>
 
-1. Fork this repo and go on replit.com.
+1. Fork this repo.
 
-2. Paste theses 2 commands in the shell:
+2. Create a new moralis server
 
-   npm install moralis
+3. Add a .env with your discord bot token, your dapp server url and your dapp appId
 
-   npm init -y && npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH
+4. Paste theses 3 commands in the shell:
 
-3. Add a secret environment variable named "token" with the password of your discord bot, in replit.
-4. Click the run button.
+   yarn
 
-5. Then, if you've not done it yet, make sure this bot stay online by going on uptimerobot.com and by pasting the https address of the bot.
+   moralis-admin-cli watch-cloud-folder --moralisApiKey ?????? --moralisApiSecret ?????? --moralisSubdomain ??????.usemoralis.com --autoSave 1 --moralisCloudfolder ??????
+
+   yarn start
+
+5. Try the bot on your server
 
 **Thank you for using NFT detector!** :grin::thumbsup:
 
 `Created by N0E-P`
-
----
-
-yarn
-
-moralis-admin-cli watch-cloud-folder --moralisApiKey ###### --moralisApiSecret ###### --moralisSubdomain ######.usemoralis.com --autoSave 1 --moralisCloudfolder "C:\Code\NFT_detector\cloud"
-
-yarn start

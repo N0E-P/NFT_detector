@@ -142,8 +142,8 @@ module.exports = {
 
     async function addRoles(blockchain, address, message) {
       //Start Moralis
-      const serverUrl = "https://c6hhlei6g0gq.usemoralis.com:2053/server";
-      const appId = "6aAUcocQa3OMclJBfd0ViF10jZayNKqvME06r16t";
+      const serverUrl = process.env.SERVERURL;
+      const appId = process.env.APPID;
       Moralis.start({ serverUrl, appId });
 
       //Get all server data
