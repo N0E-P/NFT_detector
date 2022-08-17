@@ -125,7 +125,7 @@ module.exports = {
               "**Thanks! The last thing you need to do is to tell your server's members to use the**  `!NFT`  **command.**"
             );
             channel.send(
-              "You can also tell them to go directly on the NFT Detector dapp: *https://zxhf5v44ppmy.usemoralis.com* "
+              "You can also tell them to go directly on the NFT Detector dapp: *http://localhost:3000/* "
             );
             channel.send(
               "> _```Anybody who own an NFT need to connect his wallet to the dapp to be able to be verified. Try to use the command and the dapp yourself!```_"

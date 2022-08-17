@@ -1,9 +1,7 @@
 <h1>Here is the dapp repository link: </h1> https://github.com/N0E-P/NFT_detector_dapp
 
 <h1>How to use The NFT Detector:</h1>
-1. Add the NFT Detector Bot to your discord server with this link:
-
-_https://discord.com/api/oauth2/authorize?client_id=974205010504192032&permissions=8&scope=bot%20applications.commands_
+1. Add the bot to your discord server with a link
 
 2. Write `!init` on any channel.
 
